@@ -1,2 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AISHURA | Official Website</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;font-family:Arial,"Helvetica Neue",sans-serif}
+body{background:#111;color:white}
+main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dvh;overflow:hidden}
+.world{width:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:filter .3s}
+.black{background:#101014;color:#fff}
+.white{background:#fafaf8;color:#171717}
+.world:active{filter:brightness(.8)}
+.side{font-size:clamp(19px,5vw,48px);font-weight:300;letter-spacing:.02em}
+.black .side{transform:translateY(-100px)}
+.white .side{transform:translateY(-100px)}
+.identity{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;text-align:center;pointer-events:none;mix-blend-mode:difference;color:white}
+.identity h1{font-size:clamp(38px,10vw,110px);letter-spacing:.10em;margin:0;font-weight:600}
+.identity p{font-size:clamp(11px,2.7vw,17px);letter-spacing:.08em;margin:20px 0 0}
+.hint{position:absolute;bottom:8%;width:100%;text-align:center;font-size:11px;letter-spacing:.15em;mix-blend-mode:difference;color:white;pointer-events:none}
+.panel{position:fixed;bottom:0;left:0;width:100%;padding:28px 24px 35px;background:#222;color:white;text-align:center;transform:translateY(110%);transition:transform .35s;z-index:5;box-shadow:0 -5px 30px #0003}
+.panel.show{transform:translateY(0)}
+.panel h2{font-size:25px;letter-spacing:.08em}
+.panel p{font-size:14px;line-height:2}
+.close{border:1px solid #888;background:none;color:inherit;padding:10px 25px;margin-top:12px;cursor:pointer}
+@media(hover:hover){.world:hover{filter:brightness(.87)}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<button class="world black" onclick="openWorld('if')" aria-label="IFの世界">
+<span class="side">IF...</span>
+</button>
+<button class="world white" onclick="openWorld('neo')" aria-label="NEOの世界">
+<span class="side">...NEO</span>
+</button>
+<div class="identity">
 <h1>AISHURA</h1>
 <p>鳴らせば、わかるかもしれない。</p>
+</div>
+<div class="hint">TOUCH A WORLD</div>
+</main>
+<section class="panel" id="panel" aria-live="polite">
+<h2 id="panelTitle"></h2>
+<p id="panelText"></p>
+<button class="close" onclick="closeWorld()">戻る</button>
+</section>
+<script>
+function openWorld(which){
+const isIf=which==='if';
+document.getElementById('panelTitle').textContent=isIf?'IF...AISHURA':'AISHURA...NEO';
+document.getElementById('panelText').textContent=isIf?'もしもから生まれた、最初の世界。':'次の世界へ。AISHURAは進化する。';
+document.getElementById('panel').classList.add('show');
+}
+function closeWorld(){
+document.getElementById('panel').classList.remove('show');
+}
+</script>
+</body>
+</html>
+
