@@ -164,6 +164,13 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .photo-lightbox img{display:block;max-width:95vw;max-height:90dvh;width:auto;height:auto;object-fit:contain;transform-origin:center center;user-select:none;-webkit-user-drag:none;touch-action:none}
 .photo-lightbox-close{position:absolute;top:max(12px,env(safe-area-inset-top));right:15px;z-index:2;border:1px solid #777;background:rgba(0,0,0,.65);color:white;border-radius:50%;width:44px;height:44px;font-size:26px;line-height:1;cursor:pointer}
 .photo-lightbox-note{position:absolute;bottom:max(18px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;color:#aaa;font-size:11px;letter-spacing:.12em;pointer-events:none}
+
+/* 月影: a sparse, quiet two-second shower. */
+.instrument-rain .rain-drop{width:1px;background:linear-gradient(to bottom,transparent,rgba(190,216,242,.10),rgba(215,234,252,.48))}
+/* 黒牙: intermittent darkness like a failing bulb, not lightning. */
+.bulb-flicker{position:absolute;inset:0;background:#000;opacity:0;animation:bulb-failure 1.8s steps(1,end) forwards}
+@keyframes bulb-failure{0%,8%,16%,27%,36%,51%,61%,75%,100%{opacity:0}4%,12%,23%,32%,47%,57%,70%{opacity:.70}49%,72%{opacity:.90}}
+@media(prefers-reduced-motion:reduce){.bulb-flicker{animation-duration:.15s}}
 </style>
 </head>
 <body>
@@ -284,7 +291,9 @@ function playInstrumentEffect(){
  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
  if(memberIndex===0){
   // 月影: tap to start rain; no moon glow.
+  clearTimeout(moonRainTimer);
   setMoonRain(true);
+  moonRainTimer=setTimeout(()=>setMoonRain(false),2000);
  }else if(memberIndex===1){
   const count=reduced?5:24;
   for(let i=0;i<count;i++){
@@ -300,10 +309,9 @@ function playInstrumentEffect(){
   }
   fxTimer=setTimeout(clearInstrumentEffect,reduced?150:4200);
  }else{
-  const flash=document.createElement('span');flash.className='flash';fx.append(flash);
-  const ns='http://www.w3.org/2000/svg';const svg=document.createElementNS(ns,'svg');svg.classList.add('bolt');svg.setAttribute('viewBox','0 0 100 100');svg.setAttribute('preserveAspectRatio','none');
-  const path=document.createElementNS(ns,'path');path.setAttribute('d','M76 -5 L64 17 L70 25 L51 44 L57 52 L36 74 L43 79 L20 105 M51 44 L40 38 L31 51 M36 74 L24 70 L13 84');svg.append(path);fx.append(svg);
-  fxTimer=setTimeout(clearInstrumentEffect,reduced?150:1000);
+  // 黒牙: a dying bulb flickers, darkening the existing image without lightning.
+  const darkness=document.createElement('span');darkness.className='bulb-flicker';fx.append(darkness);
+  fxTimer=setTimeout(clearInstrumentEffect,reduced?150:1800);
  }
 }
 
@@ -328,12 +336,12 @@ swipeArea.addEventListener('touchend',event=>{if(swipeMultitouch||event.touches.
 
 // Persistent rain for 月影 only; does not alter its original photograph.
 const rainLayer=document.getElementById('instrumentRain');
-for(let i=0;i<85;i++){
+for(let i=0;i<23;i++){
  const drop=document.createElement('i');drop.className='rain-drop';
  drop.style.setProperty('--rain-x',(Math.random()*115-5)+'%');
- drop.style.setProperty('--rain-l',(15+Math.random()*46)+'px');
- drop.style.setProperty('--rain-o',(.22+Math.random()*.54).toFixed(2));
- drop.style.setProperty('--rain-t',(.7+Math.random()*.8).toFixed(2)+'s');
+ drop.style.setProperty('--rain-l',(10+Math.random()*24)+'px');
+ drop.style.setProperty('--rain-o',(.13+Math.random()*.30).toFixed(2));
+ drop.style.setProperty('--rain-t',(1.1+Math.random()*1.1).toFixed(2)+'s');
  drop.style.setProperty('--rain-d',(-Math.random()*2).toFixed(2)+'s');
  drop.style.setProperty('--rain-y',(Math.random()*100)+'%');
  rainLayer.append(drop);
