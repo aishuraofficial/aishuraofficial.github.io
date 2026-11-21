@@ -248,6 +248,24 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .philosophy-page .philosophy-history-body{padding-top:0!important}
 @media(max-height:620px){.philosophy-page .philosophy-typeset{min-height:540px}}
 
+
+/* Final approved philosophy layout: breathing room between the two statements. */
+.philosophy-page .philosophy-typeset .manuscript-motto{
+  font-weight:700;
+  margin-top:clamp(22px,4.5dvh,43px);
+  line-height:1.65;
+}
+.philosophy-page .philosophy-typeset .manuscript-message{
+  font-weight:400;
+  margin-top:clamp(29px,5.2dvh,52px);
+  line-height:1.7;
+}
+.philosophy-page .philosophy-typeset .manuscript-chapter-genre{
+  transform:translateY(clamp(5px,1.3dvh,13px));
+}
+.philosophy-page .philosophy-typeset .manuscript-divider{
+  width:36px;
+}
 </style>
 </head>
 <body>
@@ -263,7 +281,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
   <div class="manuscript-chapter manuscript-chapter-intro">
     <div class="manuscript-kicker">AISHURA / PHILOSOPHY</div>
     <div class="manuscript-motto">鳴らせば、わかるかもしれない。</div>
-    <div class="manuscript-message">人と音と世界を流転する。</div>
+    <div class="manuscript-message">音と人と世界を流転する。</div>
   </div>
   <div class="manuscript-divider"></div>
   <div class="manuscript-chapter manuscript-chapter-genre">
