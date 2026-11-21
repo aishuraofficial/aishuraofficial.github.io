@@ -150,6 +150,10 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 #home .identity{z-index:2}
 #home .philosophy-trigger{z-index:4}
 #home .hint{z-index:2}
+/* Subtle, compositor-friendly breathing cue */
+#home .hint{animation:aishuraTouchBreath 3s ease-in-out infinite}
+@keyframes aishuraTouchBreath{0%,100%{opacity:.9}50%{opacity:.3}}
+@media (prefers-reduced-motion:reduce){#home .hint{animation:none;opacity:.9}}
 
 /* Rain lives above the existing Moonshadow photo, independently of tap FX. */
 .instrument-rain{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;display:none}
