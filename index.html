@@ -82,7 +82,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 /* MEMBER SWIPE */
 .member-stage{max-width:760px;margin:0 auto;padding:12px 0 30px}
 .member-visual{display:block;width:100%;height:auto;max-height:72dvh;object-fit:contain;user-select:none;-webkit-user-drag:none}
-.swipe-area{touch-action:pan-y;overflow:hidden}
+.swipe-area{touch-action:pan-y pinch-zoom;overflow:hidden}
 .detail{text-align:center;padding:20px 16px 14px}
 .detail h2{font-size:clamp(35px,8vw,80px);font-weight:300;letter-spacing:.14em;margin:0}
 .detail .jp{font-size:18px;margin:12px 0;color:#bbb}
@@ -282,8 +282,8 @@ function playInstrumentEffect(){
  const fx=document.getElementById('instrumentFx');
  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
  if(memberIndex===0){
-  const aura=document.createElement('span');aura.className='moon-aura';fx.append(aura);
-  fxTimer=setTimeout(clearInstrumentEffect,reduced?150:2300);
+  // 月影: tap to start rain; no moon glow.
+  setMoonRain(true);
  }else if(memberIndex===1){
   const count=reduced?5:24;
   for(let i=0;i<count;i++){
@@ -306,11 +306,11 @@ function playInstrumentEffect(){
  }
 }
 
-function refreshInstrument(){clearInstrumentEffect();setMoonRain(memberIndex===0);const item=instruments[memberIndex];document.getElementById('instrumentTitle').textContent=item.title;document.getElementById('instrumentSubtitle').textContent=item.subtitle;const photo=document.getElementById('instrumentPhoto');photo.src=item.image;photo.alt=item.title+' の写真'}
+function refreshInstrument(){clearInstrumentEffect();setMoonRain(false);const item=instruments[memberIndex];document.getElementById('instrumentTitle').textContent=item.title;document.getElementById('instrumentSubtitle').textContent=item.subtitle;const photo=document.getElementById('instrumentPhoto');photo.src=item.image;photo.alt=item.title+' の写真'}
 function openInstrument(){refreshInstrument();showPage('instrumentPage')}
 function changeInstrument(direction){setMember(memberIndex+direction);refreshInstrument()}
 
-function showPage(id){if(id!=='instrumentPage')clearInstrumentEffect();pages.forEach(page=>{document.getElementById(page).hidden=page!==id});window.scrollTo(0,0)}
+function showPage(id){if(id!=='instrumentPage'){clearInstrumentEffect();setMoonRain(false);}pages.forEach(page=>{document.getElementById(page).hidden=page!==id});window.scrollTo(0,0)}
 function openWorld(which){showPage(which==='if'?'ifPage':'neoPage')}
 function setMember(index){memberIndex=(index+memberData.length)%memberData.length;const member=memberData[memberIndex];document.getElementById('memberName').textContent=member.name;document.getElementById('memberJapanese').textContent=member.jp;document.getElementById('memberRole').textContent=member.role;document.getElementById('memberHeight').textContent=member.height;document.getElementById('memberAge').textContent='不明';document.getElementById('memberPart').textContent=member.part;document.getElementById('memberInstrument').textContent=member.instrument;document.getElementById('memberDescription').textContent=member.description;const photo=document.getElementById('memberImage');photo.src=member.image;photo.alt='AISHURA '+member.name;document.querySelectorAll('.slide-dot').forEach((dot,i)=>{dot.classList.toggle('active',i===memberIndex);dot.setAttribute('aria-current',i===memberIndex?'true':'false')})}
 function changeMember(direction){setMember(memberIndex+direction)}
@@ -347,7 +347,20 @@ function closePhotoLightbox(){lightbox.hidden=true;document.body.style.overflow=
 document.querySelector('.hero').addEventListener('click',function(){openPhotoLightbox(this)});
 const memberPhoto=document.getElementById('memberImage');
 let memberPhotoTouchX=0,memberPhotoTouchY=0;
-memberPhoto.addEventListener('touchstart',e=>{if(e.touches.length===1){memberPhotoTouchX=e.touches[0].clientX;memberPhotoTouchY=e.touches[0].clientY}},{passive:true});
+memberPhoto.addEventListener('touchstart',e=>{
+ if(e.touches.length===2){
+  e.preventDefault();openPhotoLightbox(memberPhoto);
+  pinchStart={distance:touchDistance(e.touches[0],e.touches[1]),scale:1};
+  swipeOnImage=true;
+ }else if(e.touches.length===1){memberPhotoTouchX=e.touches[0].clientX;memberPhotoTouchY=e.touches[0].clientY}
+},{passive:false});
+memberPhoto.addEventListener('touchmove',e=>{
+ if(!lightbox.hidden&&e.touches.length===2&&pinchStart){
+  e.preventDefault();lightboxScale=Math.max(1,Math.min(5,pinchStart.scale*touchDistance(e.touches[0],e.touches[1])/Math.max(1,pinchStart.distance)));
+  updateLightboxTransform();
+ }
+},{passive:false});
+memberPhoto.addEventListener('touchend',e=>{if(!lightbox.hidden){pinchStart=null;swipeOnImage=true;setTimeout(()=>{swipeOnImage=false},500)}},{passive:true});
 memberPhoto.addEventListener('click',function(){if(swipeOnImage){swipeOnImage=false;return}openPhotoLightbox(this)});
 memberPhoto.addEventListener('touchend',e=>{const t=e.changedTouches[0];if(Math.abs(t.clientX-memberPhotoTouchX)>25||Math.abs(t.clientY-memberPhotoTouchY)>25){swipeOnImage=true;setTimeout(()=>{swipeOnImage=false},450)}},{passive:true});
 document.getElementById('photoLightboxClose').addEventListener('click',closePhotoLightbox);
@@ -357,6 +370,7 @@ function touchDistance(a,b){return Math.hypot(a.clientX-b.clientX,a.clientY-b.cl
 lightbox.addEventListener('touchstart',e=>{if(e.touches.length===2){pinchStart={distance:touchDistance(e.touches[0],e.touches[1]),scale:lightboxScale};dragStart=null}else if(e.touches.length===1){dragStart={x:e.touches[0].clientX,y:e.touches[0].clientY,tx:lightboxX,ty:lightboxY}}},{passive:false});
 lightbox.addEventListener('touchmove',e=>{e.preventDefault();if(e.touches.length===2&&pinchStart){lightboxScale=Math.max(1,Math.min(5,pinchStart.scale*touchDistance(e.touches[0],e.touches[1])/Math.max(1,pinchStart.distance)));if(lightboxScale===1){lightboxX=0;lightboxY=0}updateLightboxTransform()}else if(e.touches.length===1&&dragStart&&lightboxScale>1){lightboxX=dragStart.tx+e.touches[0].clientX-dragStart.x;lightboxY=dragStart.ty+e.touches[0].clientY-dragStart.y;updateLightboxTransform()}},{passive:false});
 lightbox.addEventListener('touchend',e=>{pinchStart=null;dragStart=null;if(e.touches.length===1)dragStart={x:e.touches[0].clientX,y:e.touches[0].clientY,tx:lightboxX,ty:lightboxY}},{passive:true});
+lightboxImg.addEventListener('dblclick',e=>{e.preventDefault();lightboxScale=lightboxScale>1?1:2.5;lightboxX=0;lightboxY=0;updateLightboxTransform()});
 lightbox.addEventListener('wheel',e=>{e.preventDefault();lightboxScale=Math.max(1,Math.min(5,lightboxScale*(e.deltaY<0?1.12:.89)));if(lightboxScale===1){lightboxX=0;lightboxY=0}updateLightboxTransform()},{passive:false});
 </script>
 </body>
