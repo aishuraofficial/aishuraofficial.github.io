@@ -20,7 +20,25 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .identity p{font-size:clamp(11px,2.7vw,17px);letter-spacing:.08em;margin:20px 0 0}
 .philosophy-trigger{position:absolute;left:50%;top:calc(50% + clamp(76px,14vw,135px));transform:translateX(-50%);z-index:3;border:0;background:transparent;color:#fff;mix-blend-mode:difference;font-family:serif;font-size:clamp(24px,5vw,36px);font-weight:400;padding:12px 20px;line-height:1;-webkit-tap-highlight-color:transparent}
 .philosophy-trigger:focus-visible{outline:1px solid #fff}
-.philosophy-page{text-align:center}
+/* The pale, weathered surface belongs only to PHILOSOPHY / HISTORY. */
+.philosophy-page{position:relative;isolation:isolate;text-align:center;background:#c9c8c3;color:#282824;overflow:hidden}
+.philosophy-page::before{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;background:
+ radial-gradient(ellipse 38% 18% at 3% 5%,rgba(75,75,70,.19),transparent 90%),
+ radial-gradient(ellipse 25% 26% at 99% 16%,rgba(74,74,71,.22),transparent 95%),
+ radial-gradient(ellipse 18% 31% at 0% 48%,rgba(69,67,64,.17),transparent 95%),
+ radial-gradient(ellipse 38% 22% at 105% 76%,rgba(68,66,64,.21),transparent 92%),
+ radial-gradient(ellipse 45% 12% at 43% 99%,rgba(83,81,77,.17),transparent 96%),
+ radial-gradient(ellipse 58% 37% at 50% 37%,rgba(241,240,235,.36),transparent 100%),
+ repeating-linear-gradient(173deg,transparent 0 57px,rgba(83,80,74,.012) 58px,transparent 60px 116px),
+ linear-gradient(110deg,#c0bfba 0%,#d5d4ce 49%,#c4c2bd 100%)}
+.philosophy-page::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.25;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");background-size:240px 240px;mix-blend-mode:multiply}
+.philosophy-page .philosophy-body{position:relative;z-index:1}
+.philosophy-page .philosophy-eyebrow,.philosophy-page .philosophy-genre-label,.philosophy-page .philosophy-roman,.philosophy-page .history-date{color:#676661}
+.philosophy-page .philosophy-motto,.philosophy-page .philosophy-line,.philosophy-page .philosophy-genre,.philosophy-page .history-year,.philosophy-page .history-name,.philosophy-page .history-opening{color:#262622}
+.philosophy-page .philosophy-rule,.philosophy-page .history-bridge{background:#898781}
+.philosophy-page .history-row,.philosophy-page .history-birth{border-bottom-color:rgba(53,51,48,.28)}
+.philosophy-page .history-ending{color:#595853}
+.philosophy-page .history-unknown{color:#77746e}
 .philosophy-body{max-width:660px;margin:auto;padding:75px 24px 95px}
 .philosophy-eyebrow{font-size:10px;color:#888;letter-spacing:.25em;margin:0 0 40px}
 .philosophy-motto{font-size:clamp(17px,4.5vw,27px);font-weight:400;letter-spacing:.08em;line-height:2}
