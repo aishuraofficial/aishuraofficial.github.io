@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AISHURA | Official Website</title>
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&display=swap");
-
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;font-family:Arial,"Helvetica Neue",sans-serif}
 body{background:#101014;color:#fff}
@@ -209,7 +207,21 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .philosophy-page .philosophy-history-body{background:transparent!important;margin:0 auto!important;padding:clamp(55px,11vw,105px) clamp(26px,7vw,110px) 115px!important;box-sizing:border-box}
 @media(min-width:761px){.philosophy-page{background-color:#cda983!important}}
 
-.philosophy-page, .philosophy-page button {font-family:"Shippori Mincho", serif;}
+/* PHILOSOPHY: three quiet chapters, typography preserved */
+.philosophy-typeset{padding:clamp(52px,10vw,92px) 22px 0;line-height:1.7}
+.philosophy-typeset .manuscript-motto{font-weight:400;font-size:clamp(17px,4.45vw,26px);margin-top:clamp(42px,8vw,70px);line-height:1.9}
+.philosophy-typeset .manuscript-message{font-size:clamp(14px,3.8vw,20px);margin-top:16px;line-height:1.9}
+.philosophy-typeset .manuscript-divider{height:1px;width:36px;background:rgba(105,80,52,.58);margin:clamp(58px,11vw,88px) auto 24px}
+.philosophy-typeset .manuscript-genre-label{margin-top:0}
+.philosophy-typeset .manuscript-genre{font-size:clamp(33px,8.6vw,54px);font-weight:400;margin-top:12px;line-height:1.6}
+.philosophy-typeset .manuscript-roman{margin-top:2px}
+.philosophy-typeset .manuscript-history-title{margin-top:0}
+.manuscript-birth-title{font-size:clamp(21px,5.6vw,32px);letter-spacing:.08em;font-weight:400;margin-top:16px;line-height:1.65}
+.manuscript-birth-credit{font-family:Georgia,'Times New Roman',serif;font-size:clamp(13px,3.6vw,17px);letter-spacing:.04em;margin-top:4px}
+.manuscript-birth-date{font-family:Georgia,'Times New Roman',serif;font-size:clamp(12px,3vw,15px);letter-spacing:.12em;margin-top:7px;color:#66513e}
+.manuscript-discography{font-family:Georgia,'Times New Roman',serif;font-size:clamp(10px,2.7vw,14px);letter-spacing:.22em;margin:clamp(65px,12vw,100px) auto 24px}
+.philosophy-page .philosophy-history-body{padding-top:0}
+
 </style>
 </head>
 <body>
@@ -222,19 +234,22 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 </main>
 <section class="page philosophy-page" id="philosophyPage" hidden>
 <div class="philosophy-manuscript philosophy-typeset">
-<div class="manuscript-kicker">AISHURA / PHILOSOPHY</div>
+<div class="manuscript-kicker">PHILOSOPHY</div>
 <div class="manuscript-motto">鳴らせば、わかるかもしれない。</div>
-<div class="manuscript-message">音と人と世界を流転する。</div>
-<div class="manuscript-genre-label">GENRE</div>
+<div class="manuscript-message">人と音と世界を流転する。</div>
+<div class="manuscript-divider"></div>
+<div class="manuscript-genre-label">MUSIC GENRE</div>
 <div class="manuscript-genre">流転楽</div>
 <div class="manuscript-roman">RUTENGAKU</div>
-<div class="manuscript-rule"></div>
-<div class="manuscript-history-title">HISTORY / DISCOGRAPHY</div>
-<div class="manuscript-year">2026</div>
+<div class="manuscript-divider"></div>
+<div class="manuscript-history-title">HISTORY</div>
+<div class="manuscript-birth-title">AISHURA 響誕</div>
+<div class="manuscript-birth-credit">Human × ArtIntel</div>
+<div class="manuscript-birth-date">2026.11.11</div>
+<div class="manuscript-discography">DISCOGRAPHY</div>
 </div>
 <div class="philosophy-body philosophy-history-body">
 <div class="history-list">
-<div class="history-row history-birth"><span class="history-date">11.11</span><span class="history-name">響誕</span></div>
 <div class="history-row"><span class="history-date">11.11</span><span class="history-name">IF...WE PLAY</span></div>
 <div class="history-row"><span class="history-date">11.11</span><span class="history-name">Smile</span></div>
 <div class="history-row"><span class="history-date">11.11</span><span class="history-name">MAEL STORM</span></div>
