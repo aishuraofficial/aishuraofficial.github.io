@@ -299,6 +299,46 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
  .philosophy-page .philosophy-typeset .manuscript-motto{margin-top:clamp(30px,5dvh,50px)}
  .philosophy-page .philosophy-typeset .manuscript-message{margin-top:clamp(26px,4dvh,45px)}
 }
+
+/* Curated final composition: philosophy leads; genre is a supporting note. */
+.philosophy-page .philosophy-typeset{
+  position:relative!important;
+  display:block!important;
+  min-height:calc(100dvh - 94px)!important;
+  height:auto!important;
+  padding:0 18px!important;
+  box-sizing:border-box!important;
+}
+.philosophy-page .philosophy-typeset .manuscript-divider{display:none!important}
+.philosophy-page .philosophy-typeset .manuscript-chapter{
+  position:absolute!important;left:18px;right:18px;width:auto!important;
+  display:flex!important;align-items:center!important;justify-content:flex-start!important;
+  flex:none!important;transform:none!important;
+}
+.philosophy-page .philosophy-typeset .manuscript-chapter-intro{top:5%!important}
+.philosophy-page .philosophy-typeset .manuscript-motto{
+  margin-top:clamp(55px,9dvh,92px)!important;
+  font-weight:700!important;
+  font-size:clamp(17px,4.4vw,26px)!important;
+  letter-spacing:.035em!important;
+}
+.philosophy-page .philosophy-typeset .manuscript-message{
+  margin-top:clamp(53px,9dvh,92px)!important;
+  font-size:clamp(15px,3.8vw,21px)!important;
+}
+.philosophy-page .philosophy-typeset .manuscript-chapter-genre{top:54%!important}
+.philosophy-page .philosophy-typeset .manuscript-genre{
+  font-size:clamp(32px,7.8vw,51px)!important;
+  margin-top:clamp(10px,1.5dvh,16px)!important;
+}
+.philosophy-page .philosophy-typeset .manuscript-roman{margin-top:3px!important}
+.philosophy-page .philosophy-typeset .manuscript-chapter-history{top:76%!important}
+.philosophy-page .philosophy-typeset .manuscript-birth-title{margin-top:10px!important}
+.philosophy-page .philosophy-typeset .manuscript-birth-credit{margin-top:2px!important}
+.philosophy-page .philosophy-typeset .manuscript-birth-date{margin-top:4px!important}
+@media(max-height:690px){
+ .philosophy-page .philosophy-typeset{min-height:610px!important}
+}
 </style>
 </head>
 <body>
@@ -316,13 +356,11 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
     <div class="manuscript-motto">鳴らせば、わかるかもしれない。</div>
     <div class="manuscript-message">音と人と世界を流転する。</div>
   </div>
-  <div class="manuscript-divider"></div>
   <div class="manuscript-chapter manuscript-chapter-genre">
     <div class="manuscript-genre-label">MUSIC GENRE</div>
     <div class="manuscript-genre">流転楽</div>
     <div class="manuscript-roman">RUTENGAKU</div>
   </div>
-  <div class="manuscript-divider"></div>
   <div class="manuscript-chapter manuscript-chapter-history">
     <div class="manuscript-history-title">HISTORY</div>
     <div class="manuscript-birth-title">AISHURA 響誕</div>
