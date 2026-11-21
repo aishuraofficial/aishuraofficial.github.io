@@ -150,6 +150,20 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 #home .identity{z-index:2}
 #home .philosophy-trigger{z-index:4}
 #home .hint{z-index:2}
+
+/* Rain lives above the existing Moonshadow photo, independently of tap FX. */
+.instrument-rain{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;display:none}
+.instrument-rain.is-raining{display:block}
+.instrument-rain .rain-drop{position:absolute;top:-32%;left:var(--rain-x);height:var(--rain-l);width:1px;background:linear-gradient(to bottom,transparent,rgba(196,220,247,.15),rgba(218,236,255,.63));opacity:var(--rain-o);transform:rotate(10deg);animation:moon-rain var(--rain-t) linear var(--rain-d) infinite}
+@keyframes moon-rain{to{transform:translate3d(-34px,150vh,0) rotate(10deg)}}
+@media(prefers-reduced-motion:reduce){.instrument-rain .rain-drop{animation:none;opacity:.18;top:var(--rain-y)}}
+/* Photograph lightbox. Instrument photos are intentionally excluded. */
+.hero,.member-visual{cursor:zoom-in}
+.photo-lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.96);display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none}
+.photo-lightbox[hidden]{display:none!important}
+.photo-lightbox img{display:block;max-width:95vw;max-height:90dvh;width:auto;height:auto;object-fit:contain;transform-origin:center center;user-select:none;-webkit-user-drag:none;touch-action:none}
+.photo-lightbox-close{position:absolute;top:max(12px,env(safe-area-inset-top));right:15px;z-index:2;border:1px solid #777;background:rgba(0,0,0,.65);color:white;border-radius:50%;width:44px;height:44px;font-size:26px;line-height:1;cursor:pointer}
+.photo-lightbox-note{position:absolute;bottom:max(18px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;color:#aaa;font-size:11px;letter-spacing:.12em;pointer-events:none}
 </style>
 </head>
 <body>
@@ -224,7 +238,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 </section>
 <section class="page" id="instrumentPage" hidden>
 <div class="instrument-stage">
-<button class="instrument-touch" id="instrumentTouch" type="button" onclick="instrumentTap(event)" aria-label="愛機の写真に触れる。左右スワイプで愛機を切り替え"><img class="instrument-photo" id="instrumentPhoto" src="" alt="愛機の写真"><span class="instrument-fx" id="instrumentFx" aria-hidden="true"></span></button>
+<button class="instrument-touch" id="instrumentTouch" type="button" onclick="instrumentTap(event)" aria-label="愛機の写真に触れる。左右スワイプで愛機を切り替え"><img class="instrument-photo" id="instrumentPhoto" src="" alt="愛機の写真"><span class="instrument-rain" id="instrumentRain" aria-hidden="true"></span><span class="instrument-fx" id="instrumentFx" aria-hidden="true"></span></button>
 <h2 class="instrument-title" id="instrumentTitle"></h2>
 <p class="instrument-subtitle" id="instrumentSubtitle"></p>
 </div>
@@ -292,7 +306,7 @@ function playInstrumentEffect(){
  }
 }
 
-function refreshInstrument(){clearInstrumentEffect();const item=instruments[memberIndex];document.getElementById('instrumentTitle').textContent=item.title;document.getElementById('instrumentSubtitle').textContent=item.subtitle;const photo=document.getElementById('instrumentPhoto');photo.src=item.image;photo.alt=item.title+' の写真'}
+function refreshInstrument(){clearInstrumentEffect();setMoonRain(memberIndex===0);const item=instruments[memberIndex];document.getElementById('instrumentTitle').textContent=item.title;document.getElementById('instrumentSubtitle').textContent=item.subtitle;const photo=document.getElementById('instrumentPhoto');photo.src=item.image;photo.alt=item.title+' の写真'}
 function openInstrument(){refreshInstrument();showPage('instrumentPage')}
 function changeInstrument(direction){setMember(memberIndex+direction);refreshInstrument()}
 
@@ -309,6 +323,41 @@ let instrumentStartX=0,instrumentStartY=0;
 instrumentTouch.addEventListener('touchstart',event=>{const t=event.changedTouches[0];instrumentStartX=t.clientX;instrumentStartY=t.clientY},{passive:true});
 instrumentTouch.addEventListener('touchend',event=>{const t=event.changedTouches[0];const dx=t.clientX-instrumentStartX;const dy=t.clientY-instrumentStartY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2){suppressInstrumentClick=true;changeInstrument(dx<0?1:-1);setTimeout(()=>{suppressInstrumentClick=false},450)}},{passive:true});
 swipeArea.addEventListener('touchend',event=>{const touch=event.changedTouches[0];const dx=touch.clientX-touchStartX;const dy=touch.clientY-touchStartY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2){changeMember(dx<0?1:-1)}},{passive:true});
+
+// Persistent rain for 月影 only; does not alter its original photograph.
+const rainLayer=document.getElementById('instrumentRain');
+for(let i=0;i<85;i++){
+ const drop=document.createElement('i');drop.className='rain-drop';
+ drop.style.setProperty('--rain-x',(Math.random()*115-5)+'%');
+ drop.style.setProperty('--rain-l',(15+Math.random()*46)+'px');
+ drop.style.setProperty('--rain-o',(.22+Math.random()*.54).toFixed(2));
+ drop.style.setProperty('--rain-t',(.7+Math.random()*.8).toFixed(2)+'s');
+ drop.style.setProperty('--rain-d',(-Math.random()*2).toFixed(2)+'s');
+ drop.style.setProperty('--rain-y',(Math.random()*100)+'%');
+ rainLayer.append(drop);
+}
+function setMoonRain(active){rainLayer.classList.toggle('is-raining',active)}
+// Fullscreen enlargement for photos, but never for instruments or background art.
+const lightbox=document.getElementById('photoLightbox');
+const lightboxImg=document.getElementById('photoLightboxImage');
+let lightboxScale=1,lightboxX=0,lightboxY=0,pinchStart=null,dragStart=null,swipeOnImage=false;
+function updateLightboxTransform(){lightboxImg.style.transform=`translate(${lightboxX}px,${lightboxY}px) scale(${lightboxScale})`}
+function openPhotoLightbox(img){lightboxImg.src=img.currentSrc||img.src;lightboxImg.alt=img.alt||'拡大写真';lightboxScale=1;lightboxX=0;lightboxY=0;updateLightboxTransform();lightbox.hidden=false;document.body.style.overflow='hidden'}
+function closePhotoLightbox(){lightbox.hidden=true;document.body.style.overflow='';lightboxImg.removeAttribute('src');pinchStart=null;dragStart=null}
+document.querySelector('.hero').addEventListener('click',function(){openPhotoLightbox(this)});
+const memberPhoto=document.getElementById('memberImage');
+let memberPhotoTouchX=0,memberPhotoTouchY=0;
+memberPhoto.addEventListener('touchstart',e=>{if(e.touches.length===1){memberPhotoTouchX=e.touches[0].clientX;memberPhotoTouchY=e.touches[0].clientY}},{passive:true});
+memberPhoto.addEventListener('click',function(){if(swipeOnImage){swipeOnImage=false;return}openPhotoLightbox(this)});
+memberPhoto.addEventListener('touchend',e=>{const t=e.changedTouches[0];if(Math.abs(t.clientX-memberPhotoTouchX)>25||Math.abs(t.clientY-memberPhotoTouchY)>25){swipeOnImage=true;setTimeout(()=>{swipeOnImage=false},450)}},{passive:true});
+document.getElementById('photoLightboxClose').addEventListener('click',closePhotoLightbox);
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)closePhotoLightbox()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!lightbox.hidden)closePhotoLightbox()});
+function touchDistance(a,b){return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)}
+lightbox.addEventListener('touchstart',e=>{if(e.touches.length===2){pinchStart={distance:touchDistance(e.touches[0],e.touches[1]),scale:lightboxScale};dragStart=null}else if(e.touches.length===1){dragStart={x:e.touches[0].clientX,y:e.touches[0].clientY,tx:lightboxX,ty:lightboxY}}},{passive:false});
+lightbox.addEventListener('touchmove',e=>{e.preventDefault();if(e.touches.length===2&&pinchStart){lightboxScale=Math.max(1,Math.min(5,pinchStart.scale*touchDistance(e.touches[0],e.touches[1])/Math.max(1,pinchStart.distance)));if(lightboxScale===1){lightboxX=0;lightboxY=0}updateLightboxTransform()}else if(e.touches.length===1&&dragStart&&lightboxScale>1){lightboxX=dragStart.tx+e.touches[0].clientX-dragStart.x;lightboxY=dragStart.ty+e.touches[0].clientY-dragStart.y;updateLightboxTransform()}},{passive:false});
+lightbox.addEventListener('touchend',e=>{pinchStart=null;dragStart=null;if(e.touches.length===1)dragStart={x:e.touches[0].clientX,y:e.touches[0].clientY,tx:lightboxX,ty:lightboxY}},{passive:true});
+lightbox.addEventListener('wheel',e=>{e.preventDefault();lightboxScale=Math.max(1,Math.min(5,lightboxScale*(e.deltaY<0?1.12:.89)));if(lightboxScale===1){lightboxX=0;lightboxY=0}updateLightboxTransform()},{passive:false});
 </script>
 </body>
 </html>
