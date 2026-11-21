@@ -339,6 +339,56 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 @media(max-height:690px){
  .philosophy-page .philosophy-typeset{min-height:610px!important}
 }
+
+/* Restore portrait manuscript composition from the supplied reference. */
+.philosophy-page .philosophy-typeset {
+  position:relative!important; display:block!important; box-sizing:border-box!important;
+  width:100%!important; max-width:760px!important;
+  min-height:0!important; height:calc(100dvh - 94px)!important;
+  padding:0 18px!important; margin:0 auto!important;
+}
+.philosophy-page .philosophy-typeset .manuscript-chapter {
+  position:absolute!important;left:18px!important;right:18px!important;width:auto!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;
+  justify-content:flex-start!important;transform:none!important;flex:none!important;
+}
+.philosophy-page .philosophy-typeset .manuscript-chapter-intro{top:7%!important}
+.philosophy-page .philosophy-typeset .manuscript-kicker{font-size:clamp(12px,3vw,16px)!important;letter-spacing:.24em!important}
+.philosophy-page .philosophy-typeset .manuscript-motto{
+  margin-top:clamp(62px,10dvh,115px)!important;font-weight:400!important;
+  font-size:clamp(17px,4.4vw,26px)!important;letter-spacing:.065em!important;line-height:1.7!important;
+}
+.philosophy-page .philosophy-typeset .manuscript-message{
+  margin-top:clamp(40px,6.5dvh,75px)!important;font-weight:400!important;
+  font-size:clamp(15px,3.8vw,21px)!important;line-height:1.7!important;
+}
+.philosophy-page .philosophy-typeset .manuscript-chapter-genre{top:43%!important}
+.philosophy-page .philosophy-typeset .manuscript-chapter-genre:before,
+.philosophy-page .philosophy-typeset .manuscript-chapter-history:before{
+  content:'';display:block;width:36px;height:1px;background:rgba(105,80,52,.58);
+  margin:0 auto clamp(25px,4dvh,42px);
+}
+.philosophy-page .philosophy-typeset .manuscript-genre-label,
+.philosophy-page .philosophy-typeset .manuscript-history-title{font-size:clamp(11px,2.8vw,15px)!important;letter-spacing:.24em!important}
+.philosophy-page .philosophy-typeset .manuscript-genre{
+  font-size:clamp(38px,9vw,58px)!important;font-weight:400!important;
+  margin-top:clamp(14px,2.5dvh,24px)!important;line-height:1.4!important;
+}
+.philosophy-page .philosophy-typeset .manuscript-roman{margin-top:clamp(7px,1.5dvh,15px)!important}
+.philosophy-page .philosophy-typeset .manuscript-chapter-history{top:70%!important}
+.philosophy-page .philosophy-typeset .manuscript-birth-title{
+  font-weight:400!important;margin-top:clamp(18px,2.6dvh,26px)!important;
+  font-size:clamp(21px,5.4vw,32px)!important;
+}
+.philosophy-page .philosophy-typeset .manuscript-birth-credit{margin-top:clamp(8px,1.5dvh,15px)!important}
+.philosophy-page .philosophy-typeset .manuscript-birth-date{margin-top:clamp(9px,1.5dvh,15px)!important}
+.philosophy-page .manuscript-discography{
+  padding:clamp(34px,6dvh,65px) 16px 24px!important;margin:0 auto!important;
+}
+@media(max-height:720px){
+ .philosophy-page .philosophy-typeset{height:650px!important}
+}
+
 </style>
 </head>
 <body>
@@ -352,7 +402,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 <section class="page philosophy-page" id="philosophyPage" hidden>
 <div class="philosophy-manuscript philosophy-typeset">
   <div class="manuscript-chapter manuscript-chapter-intro">
-    <div class="manuscript-kicker">AISHURA / PHILOSOPHY</div>
+    <div class="manuscript-kicker">PHILOSOPHY</div>
     <div class="manuscript-motto">鳴らせば、わかるかもしれない。</div>
     <div class="manuscript-message">音と人と世界を流転する。</div>
   </div>
