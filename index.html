@@ -266,6 +266,39 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .philosophy-page .philosophy-typeset .manuscript-divider{
   width:36px;
 }
+
+/* 2026-11-21: philosophy-first layout. No equal spacing around genre. */
+.philosophy-page .philosophy-typeset{
+  justify-content:flex-start;
+  gap:0;
+}
+.philosophy-page .philosophy-typeset .manuscript-chapter-intro{
+  flex:1.55 1 0;
+  justify-content:flex-start;
+}
+.philosophy-page .philosophy-typeset .manuscript-chapter-genre{
+  flex:.78 1 0;
+  justify-content:center;
+  transform:none;
+}
+.philosophy-page .philosophy-typeset .manuscript-chapter-history{
+  flex:1.02 1 0;
+  justify-content:center;
+}
+.philosophy-page .philosophy-typeset .manuscript-divider{
+  flex:0 0 1px;
+  margin:0 auto;
+}
+.philosophy-page .philosophy-typeset .manuscript-motto{
+  margin-top:clamp(44px,8dvh,86px);
+}
+.philosophy-page .philosophy-typeset .manuscript-message{
+  margin-top:clamp(42px,7dvh,76px);
+}
+@media(max-height:700px){
+ .philosophy-page .philosophy-typeset .manuscript-motto{margin-top:clamp(30px,5dvh,50px)}
+ .philosophy-page .philosophy-typeset .manuscript-message{margin-top:clamp(26px,4dvh,45px)}
+}
 </style>
 </head>
 <body>
