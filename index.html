@@ -222,6 +222,32 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .manuscript-discography{font-family:Georgia,'Times New Roman',serif;font-size:clamp(10px,2.7vw,14px);letter-spacing:.22em;margin:clamp(65px,12vw,100px) auto 24px}
 .philosophy-page .philosophy-history-body{padding-top:0}
 
+
+/* iPhone portrait: the complete philosophy fits above the fixed navigation;
+   discography begins only after the first screen. */
+.philosophy-page .philosophy-typeset{
+  min-height:calc(100vh - 94px);
+  min-height:calc(100dvh - 94px);
+  width:100%; max-width:760px;
+  padding:clamp(24px,4.5dvh,48px) 18px clamp(22px,4dvh,42px);
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:space-between;gap:0;
+}
+.philosophy-typeset .manuscript-chapter{width:100%;display:flex;flex-direction:column;align-items:center;gap:0}
+.philosophy-typeset .manuscript-kicker{font-size:clamp(10px,2.5vw,13px);letter-spacing:.23em}
+.philosophy-typeset .manuscript-motto{font-size:clamp(18px,4.6vw,26px);font-weight:400;letter-spacing:.06em;line-height:1.7;margin:clamp(18px,4dvh,38px) 0 0}
+.philosophy-typeset .manuscript-message{font-size:clamp(15px,3.8vw,21px);font-weight:400;letter-spacing:.07em;line-height:1.7;margin:clamp(16px,3dvh,30px) 0 0}
+.philosophy-typeset .manuscript-divider{flex:none;width:36px;height:1px;margin:0 auto;background:rgba(105,80,52,.58)}
+.philosophy-typeset .manuscript-genre-label,.philosophy-typeset .manuscript-history-title{margin:0;font-size:clamp(10px,2.7vw,14px)}
+.philosophy-typeset .manuscript-genre{font-size:clamp(38px,9vw,59px);font-weight:400;letter-spacing:.14em;line-height:1.3;margin:clamp(12px,2dvh,20px) 0 0}
+.philosophy-typeset .manuscript-roman{font-size:clamp(10px,2.7vw,14px);margin:clamp(8px,1.4dvh,13px) 0 0}
+.philosophy-typeset .manuscript-birth-title{font-size:clamp(20px,5vw,30px);font-weight:400;line-height:1.4;letter-spacing:.05em;margin:clamp(12px,2dvh,20px) 0 0}
+.philosophy-typeset .manuscript-birth-credit{font-size:clamp(13px,3.3vw,17px);margin:clamp(6px,1dvh,10px) 0 0}
+.philosophy-typeset .manuscript-birth-date{font-size:clamp(12px,3vw,15px);margin:clamp(8px,1.3dvh,14px) 0 0}
+.philosophy-page .manuscript-discography{margin:0 auto;padding:clamp(42px,8dvh,72px) 16px 20px;text-align:center;color:#3b2c20;font-size:clamp(11px,2.7vw,14px);letter-spacing:.22em}
+.philosophy-page .philosophy-history-body{padding-top:0!important}
+@media(max-height:620px){.philosophy-page .philosophy-typeset{min-height:540px}}
+
 </style>
 </head>
 <body>
@@ -234,20 +260,26 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 </main>
 <section class="page philosophy-page" id="philosophyPage" hidden>
 <div class="philosophy-manuscript philosophy-typeset">
-<div class="manuscript-kicker">PHILOSOPHY</div>
-<div class="manuscript-motto">鳴らせば、わかるかもしれない。</div>
-<div class="manuscript-message">人と音と世界を流転する。</div>
-<div class="manuscript-divider"></div>
-<div class="manuscript-genre-label">MUSIC GENRE</div>
-<div class="manuscript-genre">流転楽</div>
-<div class="manuscript-roman">RUTENGAKU</div>
-<div class="manuscript-divider"></div>
-<div class="manuscript-history-title">HISTORY</div>
-<div class="manuscript-birth-title">AISHURA 響誕</div>
-<div class="manuscript-birth-credit">Human × ArtIntel</div>
-<div class="manuscript-birth-date">2026.11.11</div>
-<div class="manuscript-discography">DISCOGRAPHY</div>
+  <div class="manuscript-chapter manuscript-chapter-intro">
+    <div class="manuscript-kicker">AISHURA / PHILOSOPHY</div>
+    <div class="manuscript-motto">鳴らせば、わかるかもしれない。</div>
+    <div class="manuscript-message">人と音と世界を流転する。</div>
+  </div>
+  <div class="manuscript-divider"></div>
+  <div class="manuscript-chapter manuscript-chapter-genre">
+    <div class="manuscript-genre-label">MUSIC GENRE</div>
+    <div class="manuscript-genre">流転楽</div>
+    <div class="manuscript-roman">RUTENGAKU</div>
+  </div>
+  <div class="manuscript-divider"></div>
+  <div class="manuscript-chapter manuscript-chapter-history">
+    <div class="manuscript-history-title">HISTORY</div>
+    <div class="manuscript-birth-title">AISHURA 響誕</div>
+    <div class="manuscript-birth-credit">Human × ArtIntel</div>
+    <div class="manuscript-birth-date">2026.11.11</div>
+  </div>
 </div>
+<div class="manuscript-discography">DISCOGRAPHY</div>
 <div class="philosophy-body philosophy-history-body">
 <div class="history-list">
 <div class="history-row"><span class="history-date">11.11</span><span class="history-name">IF...WE PLAY</span></div>
