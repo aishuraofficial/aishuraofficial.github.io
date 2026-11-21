@@ -18,6 +18,28 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .identity{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;text-align:center;pointer-events:none;mix-blend-mode:difference;color:white}
 .identity h1{font-size:clamp(38px,10vw,110px);letter-spacing:.10em;margin:0;font-weight:600}
 .identity p{font-size:clamp(11px,2.7vw,17px);letter-spacing:.08em;margin:20px 0 0}
+.philosophy-trigger{position:absolute;left:50%;top:calc(50% + clamp(76px,14vw,135px));transform:translateX(-50%);z-index:3;border:0;background:transparent;color:#fff;mix-blend-mode:difference;font-family:serif;font-size:clamp(24px,5vw,36px);font-weight:400;padding:12px 20px;line-height:1;-webkit-tap-highlight-color:transparent}
+.philosophy-trigger:focus-visible{outline:1px solid #fff}
+.philosophy-page{text-align:center}
+.philosophy-body{max-width:660px;margin:auto;padding:75px 24px 95px}
+.philosophy-eyebrow{font-size:10px;color:#888;letter-spacing:.25em;margin:0 0 40px}
+.philosophy-motto{font-size:clamp(17px,4.5vw,27px);font-weight:400;letter-spacing:.08em;line-height:2}
+.philosophy-line{font-size:clamp(14px,3.8vw,21px);font-weight:300;letter-spacing:.08em;line-height:2;margin:35px 0 60px}
+.philosophy-genre-label{font-size:10px;letter-spacing:.25em;color:#888}
+.philosophy-genre{font-size:clamp(30px,8vw,48px);font-weight:300;letter-spacing:.2em;margin:15px 0 6px}
+.philosophy-roman{font-size:11px;color:#999;letter-spacing:.22em}
+.philosophy-rule{height:1px;max-width:65px;background:#555;margin:85px auto 65px}
+.history-year{font-size:30px;font-weight:300;letter-spacing:.15em;margin:0 0 38px}
+.history-list{max-width:460px;margin:auto;text-align:left}
+.history-row{display:grid;grid-template-columns:82px 1fr;gap:14px;align-items:baseline;padding:15px 0;border-bottom:1px solid #2c2c32}
+.history-date{font-size:12px;color:#999;letter-spacing:.05em}
+.history-name{font-size:clamp(14px,3.5vw,17px);letter-spacing:.04em}
+.history-birth{margin-bottom:14px;border-bottom:1px solid #555}
+.history-birth .history-name{font-size:21px;letter-spacing:.14em}
+.history-ending{margin-top:85px;font-size:23px;font-weight:300;letter-spacing:.22em;color:#aaa}
+.history-bridge{height:75px;width:1px;background:#555;margin:32px auto}
+.history-opening{font-size:23px;font-weight:300;letter-spacing:.22em}
+.history-unknown{font-size:21px;color:#888;letter-spacing:.17em;margin:38px 0 0}
 .hint{position:absolute;bottom:8%;width:100%;text-align:center;font-size:11px;letter-spacing:.15em;mix-blend-mode:difference;color:white;pointer-events:none}
 .page{min-height:100vh;min-height:100dvh;background:#101014;padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
 .navigation{position:fixed;bottom:0;left:0;right:0;z-index:20;display:flex;gap:12px;justify-content:space-between;padding:12px max(16px,calc((100vw - 1064px)/2)) calc(12px + env(safe-area-inset-bottom,0px));background:rgba(16,16,20,.96);border-top:1px solid #39393e}
@@ -97,8 +119,35 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 <button class="world black" onclick="openWorld('if')" aria-label="IFの世界"><span class="side">IF...</span></button>
 <button class="world white" onclick="openWorld('neo')" aria-label="NEOの世界"><span class="side">...NEO</span></button>
 <div class="identity"><h1>AISHURA</h1><p>鳴らせば、わかるかもしれない。</p></div>
+<button class="philosophy-trigger" onclick="showPage('philosophyPage')" aria-label="AISHURAの理念と歴史">鳴</button>
 <div class="hint">TOUCH A WORLD</div>
 </main>
+<section class="page philosophy-page" id="philosophyPage" hidden>
+<div class="philosophy-body">
+<p class="philosophy-eyebrow">AISHURA / PHILOSOPHY</p>
+<h2 class="philosophy-motto">鳴らせば、わかるかもしれない。</h2>
+<p class="philosophy-line">音と人と世界を流転する。</p>
+<p class="philosophy-genre-label">GENRE</p>
+<h3 class="philosophy-genre">流転楽</h3>
+<p class="philosophy-roman">RUTENGAKU</p>
+<div class="philosophy-rule"></div>
+<p class="philosophy-eyebrow">HISTORY / DISCOGRAPHY</p>
+<h3 class="history-year">2027</h3>
+<div class="history-list">
+<div class="history-row history-birth"><span class="history-date">11.11</span><span class="history-name">響誕</span></div>
+<div class="history-row"><span class="history-date">11.11</span><span class="history-name">IF...WE PLAY</span></div>
+<div class="history-row"><span class="history-date">11.11</span><span class="history-name">Smile</span></div>
+<div class="history-row"><span class="history-date">11.11</span><span class="history-name">MAEL STORM</span></div>
+<div class="history-row"><span class="history-date">11.14</span><span class="history-name">灰華</span></div>
+<div class="history-row"><span class="history-date">11.14</span><span class="history-name">BURST BEYOND</span></div>
+</div>
+<div class="history-ending">― 閉音 ―</div>
+<div class="history-bridge"></div>
+<div class="history-opening">― 開音 ―</div>
+<p class="history-unknown">？？？？？？？</p>
+</div>
+<nav class="navigation"><button class="navbtn topback" onclick="goHome()">TOP BACK</button><button class="navbtn oneback" onclick="goHome()">ONE BACK</button></nav>
+</section>
 <section class="page" id="ifPage" hidden>
 <header class="page-title"><h2>IF...AISHURA</h2><p>もしもから生まれた、最初の世界。</p></header>
 <div class="content">
@@ -168,7 +217,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 <nav class="navigation"><button class="navbtn topback" onclick="goHome()">TOP BACK</button><button class="navbtn oneback" onclick="goHome()">ONE BACK</button></nav>
 </section>
 <script>
-const pages=['home','ifPage','memberPage','instrumentPage','musicPage','neoPage'];
+const pages=['home','philosophyPage','ifPage','memberPage','instrumentPage','musicPage','neoPage'];
 const memberData=[
 {name:'SAYO',jp:'小夜',role:'BASS',image:'SAYO.jpg.PNG',height:'178cm',part:'Bass（レフティ）',instrument:'月影',description:'増女をモチーフにした面をつけている。その理由は詳細不明。\n月影をこよなく愛す。'},
 {name:'YOI',jp:'宵',role:'VOCAL',image:'YOI.jpg.PNG',height:'155cm',part:'Vocal',instrument:'cry',description:'天狗をモチーフにした面を首から背中側にかけている。天狗にならないように戒め。\nシャウトは極限までしない。'},
@@ -215,7 +264,7 @@ function playInstrumentEffect(){
 
 function refreshInstrument(){clearInstrumentEffect();const item=instruments[memberIndex];document.getElementById('instrumentTitle').textContent=item.title;document.getElementById('instrumentSubtitle').textContent=item.subtitle;const photo=document.getElementById('instrumentPhoto');photo.src=item.image;photo.alt=item.title+' の写真'}
 function openInstrument(){refreshInstrument();showPage('instrumentPage')}
-function changeInstrument(direction){memberIndex=(memberIndex+instruments.length+direction)%instruments.length;refreshInstrument()}
+function changeInstrument(direction){setMember(memberIndex+direction);refreshInstrument()}
 
 function showPage(id){if(id!=='instrumentPage')clearInstrumentEffect();pages.forEach(page=>{document.getElementById(page).hidden=page!==id});window.scrollTo(0,0)}
 function openWorld(which){showPage(which==='if'?'ifPage':'neoPage')}
