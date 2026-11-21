@@ -80,14 +80,14 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .instrument-touch:focus-visible{outline:2px solid white;outline-offset:3px}
 .instrument-touch .instrument-photo{pointer-events:none}
 .instrument-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2}
-.moon-aura{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse 24% 24% at 50% 25%,rgba(246,251,255,.9),rgba(172,207,255,.55) 32%,rgba(103,157,255,.18) 62%,transparent 100%);mix-blend-mode:screen;animation:moonlight 2.2s ease-in-out forwards}
+.moon-aura{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse 19% 15% at 20.7% 4.3%,rgba(234,245,255,.55),rgba(166,205,255,.28) 32%,rgba(103,157,255,.09) 62%,transparent 100%);mix-blend-mode:screen;animation:moonlight 2.2s ease-in-out forwards}
 @keyframes moonlight{0%,100%{opacity:0}30%{opacity:1}65%{opacity:.8}}
-.petal{position:absolute;top:-20px;left:var(--x);width:var(--s);height:calc(var(--s)*.75);border-radius:80% 10% 75% 20%;background:linear-gradient(135deg,#fff7fa,#ed9cb7 75%,#c86992);opacity:0;animation:petalfall var(--t) ease-in var(--d) forwards}
+.petal{position:absolute;top:-20px;left:var(--x);width:var(--s);height:calc(var(--s)*.75);border-radius:80% 10% 75% 20%;background:linear-gradient(135deg,#fff7fa,#ed9cb7 75%,#c86992);opacity:0;filter:blur(var(--blur,0px));animation:petalfall var(--t) ease-in var(--d) forwards}
 /* iOS Safari でも動作する2D transform */
 @keyframes petalfall{0%{opacity:0;transform:translate(0,0) rotate(0)}10%{opacity:.95}85%{opacity:.85}100%{opacity:0;transform:translate(var(--dx),var(--fall)) rotate(450deg)}}
-.bolt{position:absolute;inset:0;width:100%;height:100%;opacity:0;filter:drop-shadow(0 0 6px #d6eaff);animation:lightning .85s steps(1,end) forwards}
-.bolt path{fill:none;stroke:rgba(222,238,255,.85);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
-.flash{position:absolute;inset:0;opacity:0;background:linear-gradient(110deg,transparent 22%,rgba(255,255,255,.55) 52%,transparent 66%);mix-blend-mode:screen;animation:lightning .85s steps(1,end) forwards}
+.bolt{position:absolute;inset:0;width:100%;height:100%;opacity:0;filter:blur(1.4px) drop-shadow(0 0 10px #c4d9ee);animation:lightning .85s steps(1,end) forwards}
+.bolt path{fill:none;stroke:rgba(203,221,241,.46);stroke-width:.55;stroke-linecap:round;stroke-linejoin:round}
+.flash{position:absolute;inset:0;opacity:0;background:linear-gradient(110deg,transparent 22%,rgba(210,229,248,.24) 52%,transparent 66%);mix-blend-mode:screen;animation:lightning .85s steps(1,end) forwards}
 @keyframes lightning{0%,12%,24%,38%,100%{opacity:0}5%,17%{opacity:.95}29%{opacity:.45}}
 @media(prefers-reduced-motion:reduce){.moon-aura,.petal,.bolt,.flash{animation-duration:.1s!important}}
 </style>
@@ -145,7 +145,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 </section>
 <section class="page" id="instrumentPage" hidden>
 <div class="instrument-stage">
-<button class="instrument-touch" id="instrumentTouch" type="button" onclick="playInstrumentEffect()" aria-label="愛機の写真に触れる"><img class="instrument-photo" id="instrumentPhoto" src="" alt="愛機の写真"><span class="instrument-fx" id="instrumentFx" aria-hidden="true"></span></button>
+<button class="instrument-touch" id="instrumentTouch" type="button" onclick="instrumentTap(event)" aria-label="愛機の写真に触れる。左右スワイプで愛機を切り替え"><img class="instrument-photo" id="instrumentPhoto" src="" alt="愛機の写真"><span class="instrument-fx" id="instrumentFx" aria-hidden="true"></span></button>
 <h2 class="instrument-title" id="instrumentTitle"></h2>
 <p class="instrument-subtitle" id="instrumentSubtitle"></p>
 </div>
@@ -182,6 +182,8 @@ const instruments=[
 let memberIndex=0;
 let fxTimer;
 function clearInstrumentEffect(){clearTimeout(fxTimer);document.getElementById('instrumentFx').replaceChildren()}
+let suppressInstrumentClick=false;
+function instrumentTap(event){if(suppressInstrumentClick){event.preventDefault();suppressInstrumentClick=false;return}playInstrumentEffect()}
 function playInstrumentEffect(){
  clearInstrumentEffect();
  const fx=document.getElementById('instrumentFx');
@@ -190,11 +192,12 @@ function playInstrumentEffect(){
   const aura=document.createElement('span');aura.className='moon-aura';fx.append(aura);
   fxTimer=setTimeout(clearInstrumentEffect,reduced?150:2300);
  }else if(memberIndex===1){
-  const count=reduced?5:32;
+  const count=reduced?5:24;
   for(let i=0;i<count;i++){
    const petal=document.createElement('span');petal.className='petal';
    petal.style.setProperty('--x',(Math.random()*100)+'%');
-   petal.style.setProperty('--s',(7+Math.random()*9)+'px');
+   petal.style.setProperty('--s',(4+Math.random()*9)+'px');
+   petal.style.setProperty('--blur',(Math.random()<.28?1.8:Math.random()<.5?.6:0)+'px');
    petal.style.setProperty('--t',(2.2+Math.random()*1.2)+'s');
    petal.style.setProperty('--d',(Math.random()*.7)+'s');
    petal.style.setProperty('--dx',(-80+Math.random()*160)+'px');
@@ -210,7 +213,9 @@ function playInstrumentEffect(){
  }
 }
 
-function openInstrument(){clearInstrumentEffect();const item=instruments[memberIndex];document.getElementById('instrumentTitle').textContent=item.title;document.getElementById('instrumentSubtitle').textContent=item.subtitle;const photo=document.getElementById('instrumentPhoto');photo.src=item.image;photo.alt=item.title+' の写真';showPage('instrumentPage')}
+function refreshInstrument(){clearInstrumentEffect();const item=instruments[memberIndex];document.getElementById('instrumentTitle').textContent=item.title;document.getElementById('instrumentSubtitle').textContent=item.subtitle;const photo=document.getElementById('instrumentPhoto');photo.src=item.image;photo.alt=item.title+' の写真'}
+function openInstrument(){refreshInstrument();showPage('instrumentPage')}
+function changeInstrument(direction){memberIndex=(memberIndex+instruments.length+direction)%instruments.length;refreshInstrument()}
 
 function showPage(id){if(id!=='instrumentPage')clearInstrumentEffect();pages.forEach(page=>{document.getElementById(page).hidden=page!==id});window.scrollTo(0,0)}
 function openWorld(which){showPage(which==='if'?'ifPage':'neoPage')}
@@ -220,6 +225,10 @@ function openMember(which){const index={sayo:0,yoi:1,kiki:2}[which];if(index===u
 function goHome(){showPage('home')}
 const swipeArea=document.getElementById('swipeArea');let touchStartX=0,touchStartY=0;
 swipeArea.addEventListener('touchstart',event=>{const touch=event.changedTouches[0];touchStartX=touch.clientX;touchStartY=touch.clientY},{passive:true});
+const instrumentTouch=document.getElementById('instrumentTouch');
+let instrumentStartX=0,instrumentStartY=0;
+instrumentTouch.addEventListener('touchstart',event=>{const t=event.changedTouches[0];instrumentStartX=t.clientX;instrumentStartY=t.clientY},{passive:true});
+instrumentTouch.addEventListener('touchend',event=>{const t=event.changedTouches[0];const dx=t.clientX-instrumentStartX;const dy=t.clientY-instrumentStartY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2){suppressInstrumentClick=true;changeInstrument(dx<0?1:-1);setTimeout(()=>{suppressInstrumentClick=false},450)}},{passive:true});
 swipeArea.addEventListener('touchend',event=>{const touch=event.changedTouches[0];const dx=touch.clientX-touchStartX;const dy=touch.clientY-touchStartY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2){changeMember(dx<0?1:-1)}},{passive:true});
 </script>
 </body>
