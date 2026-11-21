@@ -165,8 +165,8 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .photo-lightbox-close{position:absolute;top:max(12px,env(safe-area-inset-top));right:15px;z-index:2;border:1px solid #777;background:rgba(0,0,0,.65);color:white;border-radius:50%;width:44px;height:44px;font-size:26px;line-height:1;cursor:pointer}
 .photo-lightbox-note{position:absolute;bottom:max(18px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;color:#aaa;font-size:11px;letter-spacing:.12em;pointer-events:none}
 
-/* 月影: a sparse, quiet two-second shower. */
-.instrument-rain .rain-drop{width:1px;background:linear-gradient(to bottom,transparent,rgba(190,216,242,.10),rgba(215,234,252,.48))}
+/* 月影: brief sparse rain, generated only on tap. */
+.instrument-rain .rain-drop{display:block;width:1.5px;border-radius:2px;background:linear-gradient(to bottom,transparent,rgba(204,227,250,.34),rgba(232,244,255,.92));filter:drop-shadow(0 0 1px rgba(210,230,255,.55));animation:moon-rain var(--rain-t) linear var(--rain-d) infinite}
 /* 黒牙: intermittent darkness like a failing bulb, not lightning. */
 .bulb-flicker{position:absolute;inset:0;background:#000;opacity:0;animation:bulb-failure 1.8s steps(1,end) forwards}
 @keyframes bulb-failure{0%,8%,16%,27%,36%,51%,61%,75%,100%{opacity:0}4%,12%,23%,32%,47%,57%,70%{opacity:.70}49%,72%{opacity:.90}}
@@ -334,19 +334,25 @@ instrumentTouch.addEventListener('touchstart',event=>{const t=event.changedTouch
 instrumentTouch.addEventListener('touchend',event=>{const t=event.changedTouches[0];const dx=t.clientX-instrumentStartX;const dy=t.clientY-instrumentStartY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2){suppressInstrumentClick=true;changeInstrument(dx<0?1:-1);setTimeout(()=>{suppressInstrumentClick=false},450)}},{passive:true});
 swipeArea.addEventListener('touchend',event=>{if(swipeMultitouch||event.touches.length)return;const touch=event.changedTouches[0];const dx=touch.clientX-touchStartX;const dy=touch.clientY-touchStartY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2){changeMember(dx<0?1:-1)}},{passive:true});
 
-// Persistent rain for 月影 only; does not alter its original photograph.
+// 月影: create rain only while its two-second tap effect is active.
 const rainLayer=document.getElementById('instrumentRain');
-for(let i=0;i<23;i++){
- const drop=document.createElement('i');drop.className='rain-drop';
- drop.style.setProperty('--rain-x',(Math.random()*115-5)+'%');
- drop.style.setProperty('--rain-l',(10+Math.random()*24)+'px');
- drop.style.setProperty('--rain-o',(.13+Math.random()*.30).toFixed(2));
- drop.style.setProperty('--rain-t',(1.1+Math.random()*1.1).toFixed(2)+'s');
- drop.style.setProperty('--rain-d',(-Math.random()*2).toFixed(2)+'s');
- drop.style.setProperty('--rain-y',(Math.random()*100)+'%');
- rainLayer.append(drop);
+function setMoonRain(active){
+ rainLayer.replaceChildren();
+ rainLayer.classList.toggle('is-raining',active);
+ if(!active)return;
+ const fragment=document.createDocumentFragment();
+ for(let i=0;i<24;i++){
+  const drop=document.createElement('i');drop.className='rain-drop';
+  drop.style.setProperty('--rain-x',(Math.random()*110-5)+'%');
+  drop.style.setProperty('--rain-l',(14+Math.random()*27)+'px');
+  drop.style.setProperty('--rain-o',(.38+Math.random()*.45).toFixed(2));
+  drop.style.setProperty('--rain-t',(.7+Math.random()*.65).toFixed(2)+'s');
+  drop.style.setProperty('--rain-d',(-Math.random()*1.1).toFixed(2)+'s');
+  drop.style.setProperty('--rain-y',(Math.random()*100)+'%');
+  fragment.append(drop);
+ }
+ rainLayer.append(fragment);
 }
-function setMoonRain(active){rainLayer.classList.toggle('is-raining',active)}
 // Fullscreen enlargement for photos, but never for instruments or background art.
 const lightbox=document.getElementById('photoLightbox');
 const lightboxImg=document.getElementById('photoLightboxImage');
