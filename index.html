@@ -49,6 +49,14 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .detail h2{font-size:clamp(35px,8vw,80px);font-weight:300;letter-spacing:.14em;margin:0}
 .detail .jp{font-size:18px;margin:12px 0;color:#bbb}
 .detail .role{font-size:12px;letter-spacing:.25em;color:#888;margin:18px 0}
+/* MEMBER PROFILE */
+.profile{max-width:620px;margin:20px auto 34px;padding:0 22px}
+.profile-heading{font-size:12px;font-weight:400;letter-spacing:.24em;color:#aaa;text-align:center;margin:0 0 24px}
+.profile-facts{display:grid;grid-template-columns:110px 1fr;gap:0;margin:0;border-top:1px solid #39393e}
+.profile-facts dt,.profile-facts dd{margin:0;padding:14px 8px;border-bottom:1px solid #39393e;font-size:14px;line-height:1.5}
+.profile-facts dt{color:#999;letter-spacing:.08em}
+.profile-facts dd{color:#fff}
+.profile-description{margin:28px 0 0;font-size:14px;line-height:2.1;color:#ddd;white-space:pre-line}
 .slide-controls{display:flex;justify-content:space-between;align-items:center;max-width:450px;margin:4px auto 0;padding:0 20px}
 .slide-arrow{border:1px solid #777;background:#1b1b20;color:#fff;border-radius:50%;width:50px;height:50px;font-size:28px}
 .slide-dots{display:flex;gap:12px;align-items:center}
@@ -88,6 +96,16 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 <img id="memberImage" class="member-visual" src="" alt="AISHURA MEMBER" draggable="false">
 <div class="detail"><h2 id="memberName"></h2><p class="jp" id="memberJapanese"></p><p class="role" id="memberRole"></p></div>
 </div>
+<div class="profile" aria-label="メンバープロフィール">
+<h3 class="profile-heading">PROFILE</h3>
+<dl class="profile-facts">
+<dt>HEIGHT</dt><dd id="memberHeight"></dd>
+<dt>AGE</dt><dd id="memberAge">不明</dd>
+<dt>PART</dt><dd id="memberPart"></dd>
+<dt>INSTRUMENT</dt><dd id="memberInstrument"></dd>
+</dl>
+<p class="profile-description" id="memberDescription"></p>
+</div>
 <div class="slide-controls">
 <button class="slide-arrow" onclick="changeMember(-1)" aria-label="前のメンバー">&#8249;</button>
 <div class="slide-dots" aria-label="メンバーを選択">
@@ -120,14 +138,14 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 <script>
 const pages=['home','ifPage','memberPage','musicPage','neoPage'];
 const memberData=[
-{name:'SAYO',jp:'小夜',role:'BASS',image:'SAYO.jpg.PNG'},
-{name:'YOI',jp:'宵',role:'VOCAL',image:'YOI.jpg.PNG'},
-{name:'KIKI',jp:'奇々',role:'GUITAR',image:'KIKI.jpg.PNG'}
+{name:'SAYO',jp:'小夜',role:'BASS',image:'SAYO.jpg.PNG',height:'178cm',part:'Bass（レフティ）',instrument:'月影',description:'増女をモチーフにした面をつけている。その理由は詳細不明。\n月影をこよなく愛す。'},
+{name:'YOI',jp:'宵',role:'VOCAL',image:'YOI.jpg.PNG',height:'155cm',part:'Vocal',instrument:'cry / humble',description:'天狗をモチーフにした面を首から背中側にかけている。天狗にならないようにするための戒めらしい。\nシャウトはあまりしたくないらしい。'},
+{name:'KIKI',jp:'奇々',role:'GUITAR',image:'KIKI.jpg.PNG',height:'180cm',part:'Guitar',instrument:'黒牙 / 静刃',description:'般若をモチーフにした面をつけている。その理由は詳細不明。\n常に「雷撃」というコードを探している。'}
 ];
 let memberIndex=0;
 function showPage(id){pages.forEach(page=>{document.getElementById(page).hidden=page!==id});window.scrollTo(0,0)}
 function openWorld(which){showPage(which==='if'?'ifPage':'neoPage')}
-function setMember(index){memberIndex=(index+memberData.length)%memberData.length;const member=memberData[memberIndex];document.getElementById('memberName').textContent=member.name;document.getElementById('memberJapanese').textContent=member.jp;document.getElementById('memberRole').textContent=member.role;const photo=document.getElementById('memberImage');photo.src=member.image;photo.alt='AISHURA '+member.name;document.querySelectorAll('.slide-dot').forEach((dot,i)=>{dot.classList.toggle('active',i===memberIndex);dot.setAttribute('aria-current',i===memberIndex?'true':'false')})}
+function setMember(index){memberIndex=(index+memberData.length)%memberData.length;const member=memberData[memberIndex];document.getElementById('memberName').textContent=member.name;document.getElementById('memberJapanese').textContent=member.jp;document.getElementById('memberRole').textContent=member.role;document.getElementById('memberHeight').textContent=member.height;document.getElementById('memberAge').textContent='不明';document.getElementById('memberPart').textContent=member.part;document.getElementById('memberInstrument').textContent=member.instrument;document.getElementById('memberDescription').textContent=member.description;const photo=document.getElementById('memberImage');photo.src=member.image;photo.alt='AISHURA '+member.name;document.querySelectorAll('.slide-dot').forEach((dot,i)=>{dot.classList.toggle('active',i===memberIndex);dot.setAttribute('aria-current',i===memberIndex?'true':'false')})}
 function changeMember(direction){setMember(memberIndex+direction)}
 function openMember(which){const index={sayo:0,yoi:1,kiki:2}[which];if(index===undefined)return;setMember(index);showPage('memberPage')}
 function goHome(){showPage('home')}
