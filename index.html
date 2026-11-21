@@ -7,31 +7,74 @@
 <title>AISHURA | Official Website</title>
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;min-height:100%;font-family:Arial,"Helvetica Neue",sans-serif}
-body{background:#111;color:white}
+html,body{margin:0;min-height:100%;font-family:Arial,"Helvetica Neue",sans-serif}
+body{background:#101014;color:#fff}
+button{font:inherit;cursor:pointer}
+[hidden]{display:none!important}
+
+/* TOP */
 main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dvh;overflow:hidden}
-.world{width:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:filter .3s}
+.world{width:50%;border:0;display:flex;align-items:center;justify-content:center;transition:filter .3s}
 .black{background:#101014;color:#fff}
 .white{background:#fafaf8;color:#171717}
 .world:active{filter:brightness(.8)}
-.side{font-size:clamp(19px,5vw,48px);font-weight:300;letter-spacing:.02em}
-.black .side{transform:translateY(-100px)}
-.white .side{transform:translateY(-100px)}
+.side{font-size:clamp(19px,5vw,48px);font-weight:300;letter-spacing:.02em;transform:translateY(-100px)}
 .identity{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;text-align:center;pointer-events:none;mix-blend-mode:difference;color:white}
 .identity h1{font-size:clamp(38px,10vw,110px);letter-spacing:.10em;margin:0;font-weight:600}
 .identity p{font-size:clamp(11px,2.7vw,17px);letter-spacing:.08em;margin:20px 0 0}
 .hint{position:absolute;bottom:8%;width:100%;text-align:center;font-size:11px;letter-spacing:.15em;mix-blend-mode:difference;color:white;pointer-events:none}
-.panel{position:fixed;bottom:0;left:0;width:100%;padding:28px 24px 35px;background:#222;color:white;text-align:center;transform:translateY(110%);transition:transform .35s;z-index:5;box-shadow:0 -5px 30px #0003}
-.panel.show{transform:translateY(0)}
-.panel h2{font-size:25px;letter-spacing:.08em}
-.panel p{font-size:14px;line-height:2}
-.close{border:1px solid #888;background:none;color:inherit;padding:10px 25px;margin-top:12px;cursor:pointer}
-@media(hover:hover){.world:hover{filter:brightness(.87)}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* INNER PAGES */
+.page{min-height:100vh;min-height:100dvh;background:#101014}
+.navigation{display:flex;gap:12px;justify-content:space-between;padding:18px;max-width:1100px;margin:auto}
+.navbtn{border:1px solid #777;padding:12px 18px;font-size:12px;font-weight:700;letter-spacing:.08em;min-height:44px}
+.topback{background:#000;color:#fff}
+.oneback{background:#fff;color:#000}
+.page-title{text-align:center;padding:25px 15px 30px}
+.page-title h2{font-size:clamp(27px,6vw,55px);font-weight:400;letter-spacing:.12em;margin:0}
+.page-title p{font-size:12px;letter-spacing:.1em;color:#aaa;margin-top:16px}
+.content{max-width:1100px;margin:auto;padding:0 18px 70px}
+
+/* IF HERO */
+.hero{width:100%;height:auto;display:block}
+.members{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:30px}
+.member{background:transparent;border:1px solid #666;color:white;padding:22px 5px;min-height:80px;transition:background .25s}
+.member strong{display:block;font-size:clamp(14px,3vw,23px);letter-spacing:.12em}
+.member span{display:block;font-size:12px;color:#aaa;margin-top:8px}
+.member:active{background:#333}
+.guide{text-align:center;color:#aaa;font-size:11px;letter-spacing:.2em;margin:25px 0 0}
+
+/* MEMBER DETAIL */
+.detail{text-align:center;padding:70px 20px}
+.detail h2{font-size:clamp(35px,8vw,80px);font-weight:300;letter-spacing:.14em;margin:0}
+.detail .jp{font-size:18px;margin:20px 0;color:#bbb}
+.detail .role{font-size:12px;letter-spacing:.25em;color:#888;margin:30px 0}
+
+/* NEO */
+.neo-intro{text-align:center;padding:70px 15px;color:#bbb;line-height:2}
+
+@media(hover:hover){
+.world:hover{filter:brightness(.87)}
+.member:hover{background:#29292e}
+.navbtn:hover{opacity:.75}
+}
+@media(max-width:480px){
+.navigation{padding:12px;gap:8px}
+.navbtn{padding:12px 10px;font-size:11px;flex:1}
+.content{padding:0 0 50px}
+.members{gap:6px;margin:22px 12px 0}
+.member{padding:18px 3px;min-height:75px}
+.member span{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+*{transition:none!important}
+}
 </style>
 </head>
 <body>
-<main>
+
+<!-- TOP -->
+<main id="home">
 <button class="world black" onclick="openWorld('if')" aria-label="IFの世界">
 <span class="side">IF...</span>
 </button>
@@ -44,22 +87,96 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 </div>
 <div class="hint">TOUCH A WORLD</div>
 </main>
-<section class="panel" id="panel" aria-live="polite">
-<h2 id="panelTitle"></h2>
-<p id="panelText"></p>
-<button class="close" onclick="closeWorld()">戻る</button>
+
+<!-- IF PAGE -->
+<section class="page" id="ifPage" hidden>
+<nav class="navigation">
+<button class="navbtn topback" onclick="goHome()">TOP BACK</button>
+<button class="navbtn oneback" onclick="goHome()">ONE BACK</button>
+</nav>
+
+<header class="page-title">
+<h2>IF...AISHURA</h2>
+<p>もしもから生まれた、最初の世界。</p>
+</header>
+
+<div class="content">
+<img class="hero"
+src="4D32F8E3-B738-4AE7-995E-12735056C1C1.png"
+alt="AISHURA 小夜・宵・奇々の集合写真">
+
+<div class="members">
+<button class="member" onclick="openMember('sayo')">
+<strong>SAYO</strong><span>小夜</span>
+</button>
+<button class="member" onclick="openMember('yoi')">
+<strong>YOI</strong><span>宵</span>
+</button>
+<button class="member" onclick="openMember('kiki')">
+<strong>KIKI</strong><span>奇々</span>
+</button>
+</div>
+<p class="guide">TOUCH A MEMBER</p>
+</div>
 </section>
+
+<!-- MEMBER PAGE -->
+<section class="page" id="memberPage" hidden>
+<nav class="navigation">
+<button class="navbtn topback" onclick="goHome()">TOP BACK</button>
+<button class="navbtn oneback" onclick="showPage('ifPage')">ONE BACK</button>
+</nav>
+<div class="detail">
+<h2 id="memberName"></h2>
+<p class="jp" id="memberJapanese"></p>
+<p class="role" id="memberRole"></p>
+</div>
+</section>
+
+<!-- NEO PAGE -->
+<section class="page" id="neoPage" hidden>
+<nav class="navigation">
+<button class="navbtn topback" onclick="goHome()">TOP BACK</button>
+<button class="navbtn oneback" onclick="goHome()">ONE BACK</button>
+</nav>
+<header class="page-title">
+<h2>AISHURA...NEO</h2>
+<p>次の世界へ。AISHURAは進化する。</p>
+</header>
+<div class="neo-intro">COMING SOON</div>
+</section>
+
 <script>
-function openWorld(which){
-const isIf=which==='if';
-document.getElementById('panelTitle').textContent=isIf?'IF...AISHURA':'AISHURA...NEO';
-document.getElementById('panelText').textContent=isIf?'もしもから生まれた、最初の世界。':'次の世界へ。AISHURAは進化する。';
-document.getElementById('panel').classList.add('show');
+const pages=['home','ifPage','memberPage','neoPage'];
+
+function showPage(id){
+pages.forEach(page=>{
+document.getElementById(page).hidden=page!==id;
+});
+window.scrollTo(0,0);
 }
-function closeWorld(){
-document.getElementById('panel').classList.remove('show');
+
+function openWorld(which){
+showPage(which==='if'?'ifPage':'neoPage');
+}
+
+function openMember(which){
+const data={
+sayo:['SAYO','小夜','BASS'],
+yoi:['YOI','宵','VOCAL'],
+kiki:['KIKI','奇々','GUITAR']
+};
+const member=data[which];
+if(!member)return;
+document.getElementById('memberName').textContent=member[0];
+document.getElementById('memberJapanese').textContent=member[1];
+document.getElementById('memberRole').textContent=member[2];
+showPage('memberPage');
+}
+
+function goHome(){
+showPage('home');
 }
 </script>
 </body>
 </html>
-
