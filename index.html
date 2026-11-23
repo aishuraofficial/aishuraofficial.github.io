@@ -433,6 +433,15 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .hell-gate.gate-image strong{display:block;position:absolute;top:8%;left:0;right:0;text-align:center;font-size:clamp(18px,3.3vw,31px);letter-spacing:.13em;text-shadow:0 2px 9px #000,0 0 12px #000}
 .hell-gate.gate-image:hover,.hell-gate.gate-image:focus-visible{border-color:#e8b88a;filter:brightness(1.09)}
 @media(max-width:420px){.hell-gate.gate-image strong{font-size:clamp(16px,5vw,22px)}}
+
+/* HELLBOUND — featured above the nine gates */
+.hell-feature{width:min(100%,780px);margin:30px auto 0;text-align:center}
+.hell-feature-label{font-size:10px;letter-spacing:.22em;color:#b79586}
+.hell-feature h3{font-family:Georgia,serif;font-size:clamp(26px,6vw,48px);letter-spacing:.12em;color:#e44b42;margin:12px 0 22px}
+.hell-feature-video{position:relative;aspect-ratio:16/9;width:100%;background:#070508;border:1px solid #67413e;box-shadow:0 0 34px rgba(158,32,22,.20)}
+.hell-feature-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.hell-feature-notice{font-size:clamp(10px,2.4vw,12px);color:#b4a5a3;line-height:2.1;margin:19px 5px 0}
+.hell-feature+.hell-grid{margin-top:clamp(28px,6vh,58px)}
 </style>
 </head>
 <body>
@@ -567,6 +576,12 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 <section class="hell-gates" id="hellGatesPage" hidden>
  <div class="hell-gates-inner">
   <div class="hell-eyebrow">NINE GATES OF HELL</div><h2>愛修羅</h2>
+  <div class="hell-feature">
+   <div class="hell-feature-label">NOW PLAYING IN HELL — OFFICIAL AUDIO</div>
+   <h3>HELLBOUND</h3>
+   <div class="hell-feature-video"><iframe src="https://www.youtube-nocookie.com/embed/G9QwVwiu_aE" title="愛修羅 - HELLBOUND (Official Audio)" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+   <p class="hell-feature-notice">※ご家族共有のアカウントやプレイリストの管理が不便な方はHELLされる事をオススメしません。<br>HEAVENに帰りな！HAHAHA！</p>
+  </div>
   <div class="hell-grid">
    <button class="hell-gate gate-image" onclick="openHellGate('月下')" aria-label="月下"><img src="hell_images/gekka.webp" alt="" loading="lazy" decoding="async"><strong>月下</strong></button>
    <button class="hell-gate gate-image" onclick="openHellGate('叫魂')" aria-label="叫魂"><img src="hell_images/kyokon.webp" alt="" loading="lazy" decoding="async"><strong>叫魂</strong></button>
@@ -578,15 +593,30 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
    <button class="hell-gate gate-image" onclick="openHellGate('地獄')" aria-label="地獄"><img src="hell_images/jigoku.webp" alt="" loading="lazy" decoding="async"><strong>地獄</strong></button>
    <button class="hell-gate gate-image" onclick="goHome()" aria-label="天国"><img src="hell_images/tengoku.webp" alt="" loading="lazy" decoding="async"><strong>天国</strong></button>
   </div>
-  <button class="hell-return" onclick="goHome()">AISHURAへ戻る</button>
  </div>
 </section>
 <section class="hell-placeholder" id="hellPlaceholderPage" hidden>
  <div class="hell-eyebrow">COMING SOON</div><h2 id="hellPlaceholderTitle"></h2><p id="hellPlaceholderText"></p>
  <button class="hell-return" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
 </section>
+<section class="hell-placeholder" id="hellMusicWarningPage" hidden>
+ <div class="hell-warning-inner">
+  <div class="hell-eyebrow">WARNING / MUSIC FROM HELL</div>
+  <h2>警告</h2>
+  <p>この先には愛修羅の楽曲が存在します。<br>プレイリストを地獄化する恐れがある為、無闇に聴くことはオススメしません。</p>
+  <div class="hell-actions">
+   <button onclick="showPage('hellMusicPage')">地獄を聴く</button>
+   <button class="hell-heaven" onclick="showPage('hellGatesPage')">まだ聴かない</button>
+  </div>
+ </div>
+</section>
+<section class="hell-placeholder" id="hellMusicPage" hidden>
+ <div class="hell-eyebrow">MUSIC FROM HELL</div><h2>地獄</h2>
+ <p>楽曲は準備中です。</p>
+ <button class="hell-return" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
+</section>
 <script>
-const pages=['home','philosophyPage','ifPage','memberPage','instrumentPage','musicPage','neoPage','hellWarningPage','hellGatesPage','hellPlaceholderPage'];
+const pages=['home','philosophyPage','ifPage','memberPage','instrumentPage','musicPage','neoPage','hellWarningPage','hellGatesPage','hellPlaceholderPage','hellMusicWarningPage','hellMusicPage'];
 const memberData=[
 {name:'SAYO',jp:'小夜',role:'BASS',image:'SAYO.jpg.PNG',height:'178cm',part:'Bass（レフティ）',instrument:'月影',description:'増女をモチーフにした面をつけている。その理由は詳細不明。\n月影をこよなく愛す。'},
 {name:'YOI',jp:'宵',role:'VOCAL',image:'YOI.jpg.PNG',height:'155cm',part:'Vocal',instrument:'cry',description:'天狗をモチーフにした面を首から背中側にかけている。天狗にならないように戒め。\nシャウトは極限までしない。'},
@@ -643,6 +673,8 @@ function setMember(index){memberIndex=(index+memberData.length)%memberData.lengt
 function changeMember(direction){setMember(memberIndex+direction)}
 function openMember(which){const index={sayo:0,yoi:1,kiki:2}[which];if(index===undefined)return;setMember(index);showPage('memberPage')}
 function openHellGate(name){
+ if(name==='天国'){goHome();return;}
+ if(name==='地獄'){showPage('hellMusicWarningPage');return;}
  const descriptions={'月下':'アサガオのプロフィール','叫魂':'暁のプロフィール','聖剣':'騎騎と聖剣ライトニング','栽培':'アサガオファンの思想','崇拝':'暁ファンの思想','議論':'聖剣ライトニングについて','深淵':'ディスコグラフィー','地獄':'楽曲'};
  document.getElementById('hellPlaceholderTitle').textContent=name;
  document.getElementById('hellPlaceholderText').textContent=(descriptions[name]||'')+' — 準備中';
