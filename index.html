@@ -442,6 +442,18 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .hell-feature-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .hell-feature-notice{font-size:clamp(10px,2.4vw,12px);color:#b4a5a3;line-height:2.1;margin:19px 5px 0}
 .hell-feature+.hell-grid{margin-top:clamp(28px,6vh,58px)}
+
+/* HELL MEMBER PROFILES: isolated from AISHURA's original member pages */
+.hell-profile{min-height:100dvh;background:#0c0b0f;color:#f6f2f2;padding:30px 16px 95px;text-align:center}
+.hell-profile-inner{max-width:760px;margin:auto}
+.hell-profile .hell-eyebrow{letter-spacing:.23em;color:#a99e9e;font-size:10px;margin-bottom:12px}
+.hell-profile h2{font-size:clamp(32px,8vw,64px);font-weight:400;letter-spacing:.13em;margin:0 0 20px}
+.hell-profile-photo{display:block;width:100%;max-width:660px;height:auto;max-height:80dvh;object-fit:contain;margin:0 auto 30px}
+.hell-profile-details{max-width:620px;margin:0 auto;text-align:left;border-top:1px solid #4d4146}
+.hell-profile-row{display:grid;grid-template-columns:minmax(105px,30%) 1fr;gap:12px;padding:17px 8px;border-bottom:1px solid #4d4146;line-height:1.75;font-size:clamp(13px,3.4vw,16px)}
+.hell-profile-key{font-size:11px;letter-spacing:.1em;color:#a99e9e}
+.hell-profile-value{overflow-wrap:anywhere;white-space:pre-line}
+.hell-profile-back{display:block;margin:35px auto 0;min-height:50px;padding:14px 25px;background:transparent;color:white;border:1px solid #87787b;letter-spacing:.1em}
 </style>
 </head>
 <body>
@@ -595,6 +607,15 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
   </div>
  </div>
 </section>
+<section class="hell-profile" id="hellProfilePage" hidden>
+ <div class="hell-profile-inner">
+  <div class="hell-eyebrow">HELL / MEMBER PROFILE</div>
+  <h2 id="hellProfileName"></h2>
+  <img class="hell-profile-photo" id="hellProfilePhoto" src="" alt="" loading="lazy" decoding="async">
+  <div class="hell-profile-details" id="hellProfileDetails"></div>
+  <button class="hell-profile-back" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
+ </div>
+</section>
 <section class="hell-placeholder" id="hellPlaceholderPage" hidden>
  <div class="hell-eyebrow">COMING SOON</div><h2 id="hellPlaceholderTitle"></h2><p id="hellPlaceholderText"></p>
  <button class="hell-return" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
@@ -616,7 +637,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
  <button class="hell-return" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
 </section>
 <script>
-const pages=['home','philosophyPage','ifPage','memberPage','instrumentPage','musicPage','neoPage','hellWarningPage','hellGatesPage','hellPlaceholderPage','hellMusicWarningPage','hellMusicPage'];
+const pages=['home','philosophyPage','ifPage','memberPage','instrumentPage','musicPage','neoPage','hellWarningPage','hellGatesPage','hellProfilePage','hellPlaceholderPage','hellMusicWarningPage','hellMusicPage'];
 const memberData=[
 {name:'SAYO',jp:'小夜',role:'BASS',image:'SAYO.jpg.PNG',height:'178cm',part:'Bass（レフティ）',instrument:'月影',description:'増女をモチーフにした面をつけている。その理由は詳細不明。\n月影をこよなく愛す。'},
 {name:'YOI',jp:'宵',role:'VOCAL',image:'YOI.jpg.PNG',height:'155cm',part:'Vocal',instrument:'cry',description:'天狗をモチーフにした面を首から背中側にかけている。天狗にならないように戒め。\nシャウトは極限までしない。'},
@@ -672,7 +693,26 @@ function openWorld(which){showPage(which==='if'?'ifPage':'neoPage')}
 function setMember(index){memberIndex=(index+memberData.length)%memberData.length;const member=memberData[memberIndex];document.getElementById('memberName').textContent=member.name;document.getElementById('memberJapanese').textContent=member.jp;document.getElementById('memberRole').textContent=member.role;document.getElementById('memberHeight').textContent=member.height;document.getElementById('memberAge').textContent='不明';document.getElementById('memberPart').textContent=member.part;document.getElementById('memberInstrument').textContent=member.instrument;document.getElementById('memberDescription').textContent=member.description;const photo=document.getElementById('memberImage');photo.src=member.image;photo.alt='AISHURA '+member.name;document.querySelectorAll('.slide-dot').forEach((dot,i)=>{dot.classList.toggle('active',i===memberIndex);dot.setAttribute('aria-current',i===memberIndex?'true':'false')})}
 function changeMember(direction){setMember(memberIndex+direction)}
 function openMember(which){const index={sayo:0,yoi:1,kiki:2}[which];if(index===undefined)return;setMember(index);showPage('memberPage')}
+const hellProfiles={
+ '月下':{name:'アサガオ（ASAGAO）',image:'hell_profiles/asagao.webp',rows:[['PART','Bass'],['HEIGHT','常にスーパーダウン（水やり）の為計測不能'],['INSTRUMENT','ムーンシャドウ1000ml タイプ'],['PLAY STYLE','本人は「ムーンリバース」と言っているが、ファンからは「水やり」と呼ばれている。']]},
+ '叫魂':{name:'暁（AKATSUKI）',image:'hell_profiles/akatsuki.webp',rows:[['PART','Vocal'],['HEIGHT','2人からはニワトリ並みと可愛がられていてなんか可哀想な為、表記不可能'],['INSTRUMENT','dry ASAHI super'],['VOCAL STYLE','シャウトに絶対的な自信を持ち、なよなよした歌い方を嫌う。生歌主義を掲げるが、裏ではスタッフがエフェクトをかけている。'],['FANS','GOD morning（神のおはよう）']]},
+ '聖剣':{name:'騎騎（KIKI）',image:'hell_profiles/kiki.webp',rows:[['PART','Guitar'],['HEIGHT','195センチ(聖剣ライトニング変形時)'],['INSTRUMENT','聖剣ライトニング'],['一言','形ある物は全て壊さなければならない。'],['近況','今日も宇宙の塵と戦っている。']]}
+};
+function openHellProfile(gate){
+ const p=hellProfiles[gate];if(!p)return;
+ document.getElementById('hellProfileName').textContent=p.name;
+ const photo=document.getElementById('hellProfilePhoto');photo.src=p.image;photo.alt=p.name+'のプロフィール写真';
+ const details=document.getElementById('hellProfileDetails');details.replaceChildren();
+ p.rows.forEach(([key,value])=>{
+  const row=document.createElement('div');row.className='hell-profile-row';
+  const k=document.createElement('div');k.className='hell-profile-key';k.textContent=key;
+  const v=document.createElement('div');v.className='hell-profile-value';v.textContent=value;
+  row.append(k,v);details.append(row);
+ });
+ showPage('hellProfilePage');
+}
 function openHellGate(name){
+ if(hellProfiles[name]){openHellProfile(name);return;}
  if(name==='天国'){goHome();return;}
  if(name==='地獄'){showPage('hellMusicWarningPage');return;}
  const descriptions={'月下':'アサガオのプロフィール','叫魂':'暁のプロフィール','聖剣':'騎騎と聖剣ライトニング','栽培':'アサガオファンの思想','崇拝':'暁ファンの思想','議論':'聖剣ライトニングについて','深淵':'ディスコグラフィー','地獄':'楽曲'};
