@@ -480,6 +480,36 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .hell-burnt-paper .abyss-label{font-size:clamp(9px,2vw,12px)}
 @media(max-width:520px){.hell-burnt-paper{padding:17% 13% 15%;}.hell-burnt-paper h2{font-size:clamp(28px,8vw,48px)!important;margin:7px 0}.hell-burnt-paper .abyss-motto{margin:12px 0!important;font-size:clamp(10px,2.7vw,14px)}.hell-burnt-paper .abyss-genre{margin:12px 0 18px!important;font-size:clamp(12px,3vw,15px)}.hell-burnt-paper .abyss-date{margin:10px 0!important;font-size:clamp(11px,3vw,15px)}.hell-burnt-paper .abyss-history{margin:8px 0!important;line-height:1.8!important;font-size:clamp(10px,2.7vw,14px)}.hell-burnt-paper hr{margin:12px 0!important;width:80%}}
 .hell-burnt-paper h2{font-size:clamp(36px,9vw,60px);letter-spacing:.17em;font-weight:500;margin:12px 0}.hell-burnt-paper .abyss-label{font-size:12px;letter-spacing:.18em}.hell-burnt-paper .abyss-motto{margin:26px 0;line-height:2}.hell-burnt-paper .abyss-genre{font-weight:700;letter-spacing:.06em;margin:22px 0 32px}.hell-burnt-paper .abyss-date{margin:20px 0}.hell-burnt-paper .abyss-history{line-height:2.2;margin:16px 0}.hell-burnt-paper hr{border:0;border-top:1px solid #66472e;margin:25px 0}
+
+/* 愛修羅：園芸チャット・聖剣研究・幻の第十門 */
+.hell-mini-gate{display:block;margin:42px auto 12px;width:55px;height:66px;border:1px solid #68544b;padding:0;background:#110d0c;cursor:pointer;overflow:hidden}
+.hell-mini-gate img{width:100%;height:100%;object-fit:cover}
+.hell-mini-caption{font-size:9px;color:#655657;text-align:center;letter-spacing:.15em}
+.hell-extra{min-height:100svh;padding:34px 15px 85px;text-align:center}
+.hell-extra-inner{max-width:720px;margin:auto}
+.hell-extra h2{font-size:clamp(30px,8vw,48px);letter-spacing:.13em}
+.hell-extra-back{margin:32px auto;padding:12px 24px;background:transparent;border:1px solid currentColor;color:inherit;cursor:pointer}
+#hellGrowPage{background:#edf3e8;color:#304e35}
+.garden-chat{max-width:580px;margin:20px auto;text-align:left;background:#e3eddf;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px #263c271a}
+.garden-header{padding:19px;background:#d1e2c9;font-weight:bold}
+.garden-msg{display:flex;gap:10px;align-items:flex-start;margin:18px 13px}
+.garden-avatar{border-radius:50%;background:#93b68c;color:white;flex:none;width:38px;height:38px;display:grid;place-items:center}
+.garden-name{font-size:12px;color:#56755c;margin-bottom:5px}
+.garden-bubble{background:white;color:#27392a;border-radius:4px 15px 15px 15px;padding:13px 15px;line-height:1.85;white-space:pre-line}
+.garden-button{background:#8cc783;color:#173e24;border:0;border-radius:10px;padding:17px 28px;font-weight:bold;cursor:pointer}
+#hellTomatoPage{background:#f9faf7;color:#334331;display:grid;place-items:center}
+#hellTomatoPage p{font-size:clamp(20px,5vw,30px)}
+#hellDebatePage,#hellConclusionPage,#hellDebateAnswerPage{background:#f5f1e8;color:#292a2a}
+.research{max-width:620px;margin:20px auto;text-align:left;border-top:2px solid #666}
+.research article{padding:20px 8px;border-bottom:1px solid #c7c1b8;line-height:1.9}
+.research h3{margin:0 0 9px;font-size:18px}
+.research-button,.research-choice{background:white;border:1px solid #928c82;color:#262525;padding:17px;cursor:pointer}
+.research-choice{display:block;width:100%;margin:10px auto;text-align:left;max-width:500px;border-radius:5px}
+.research-button{margin:24px auto}
+#hellDebateAnswerPage .lightning-laugh{font-size:clamp(24px,6vw,36px);margin:65px auto 30px}
+#hellJiroPage{background:#151711;color:#f3e7d2}
+.hell-jiro-img{width:min(100%,540px);height:auto;max-height:65svh;object-fit:contain}
+.hell-jiro-info{margin:20px auto;max-width:540px;text-align:left;line-height:2.4}
 </style>
 </head>
 <body>
@@ -631,6 +661,8 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
    <button class="hell-gate gate-image" onclick="openHellGate('地獄')" aria-label="地獄"><img src="hell_images/jigoku.webp" alt="" loading="lazy" decoding="async"><strong>地獄</strong></button>
    <button class="hell-gate gate-image" onclick="goHome()" aria-label="天国"><img src="hell_images/tengoku.webp" alt="" loading="lazy" decoding="async"><strong>天国</strong></button>
   </div>
+  <button class="hell-mini-gate" onclick="showPage('hellJiroPage')" aria-label="幻の第十門 ヘル次郎"><img src="hell_profiles/helljiro.webp" alt="森の丸太" loading="lazy"></button>
+  <div class="hell-mini-caption">第十門？</div>
  </div>
 </section>
 <section class="hell-profile" id="hellProfilePage" hidden>
@@ -643,6 +675,49 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
  </div>
 </section>
 
+
+<section class="hell-extra" id="hellGrowPage" hidden>
+ <div class="hell-extra-inner"><h2>栽培</h2>
+ <div class="garden-chat"><div class="garden-header">🌱 ムーンリバース園芸部（128）<div style="font-size:12px;font-weight:normal">本日の水やり報告</div></div>
+ <div class="garden-msg"><span class="garden-avatar">🌼</span><div><div class="garden-name">水やり三段</div><div class="garden-bubble">おはようございます🌱
+今朝もムーンリバース完了しました。</div></div></div>
+ <div class="garden-msg"><span class="garden-avatar">💧</span><div><div class="garden-name">月影育成中</div><div class="garden-bubble">昨日から低音の伸びが悪いのですが、水不足でしょうか？</div></div></div>
+ <div class="garden-msg"><span class="garden-avatar">🌸</span><div><div class="garden-name">朝顔七分咲き</div><div class="garden-bubble">日陰に置いて様子を見ましょう☺️</div></div></div>
+ <div class="garden-msg"><span class="garden-avatar">🍃</span><div><div class="garden-name">土壌改良係</div><div class="garden-bubble">皆様、本日もよい水やりを🌼</div></div></div>
+ </div><button class="garden-button" onclick="showPage('hellTomatoPage')">今日の育成状況</button>
+ <div><button class="hell-extra-back" onclick="showPage('hellGatesPage')">九門へ戻る</button></div></div>
+</section>
+<section class="hell-extra" id="hellTomatoPage" hidden><div><p>プチトマトを収穫した。</p><button class="hell-extra-back" onclick="showPage('hellGrowPage')">戻る</button></div></section>
+<section class="hell-extra" id="hellDebatePage" hidden>
+ <div class="hell-extra-inner"><div style="font-size:12px;letter-spacing:.2em">聖剣ライトニング学術研究会</div><h2>聖剣ライトニングとは？</h2>
+ <div class="research">
+ <article><h3>第一章　聖剣の定義</h3>聖剣とは何か。誰が聖なるものと認定するのか。剣の所有者が自称した場合、その効力は認められるのか。</article>
+ <article><h3>第二章　ライトニングの定義</h3>ライトニングとは自然現象か、固有名称か。落雷を伴わない場合もライトニングと呼称できるのか。</article>
+ <article><h3>第三章　歴史文献の検証</h3>聖剣ライトニングの起源を示す文献は存在するのか。伝承と史実をどこで区別すべきか。</article>
+ <article><h3>第四章　模倣品・模倣作品の研究</h3>聖剣ライトニングに類似する武器、楽器、創作物を比較し、独自性と先行性を検討する。</article>
+ <article><strong>研究会からのお知らせ</strong><p>なお、本研究会では聖剣ライトニングの実在について、現在も結論に至っておりません。</p></article>
+ </div><button class="research-button" onclick="showPage('hellConclusionPage')">結論を導く</button>
+ <div><button class="hell-extra-back" onclick="showPage('hellGatesPage')">九門へ戻る</button></div></div>
+</section>
+<section class="hell-extra" id="hellConclusionPage" hidden>
+ <div class="hell-extra-inner"><h2>結論</h2><h3>聖剣ライトニングとは？</h3>
+ <button class="research-choice" onclick="showPage('hellDebateAnswerPage')">① 聖剣。ライトニング。</button>
+ <button class="research-choice" onclick="showPage('hellDebateAnswerPage')">② 聖！剣！ライトニング！</button>
+ <button class="research-choice" onclick="showPage('hellDebateAnswerPage')">③ 聖剣ラ？イトニング？</button>
+ <button class="research-choice" onclick="showPage('hellDebateAnswerPage')">④ 聖剣ライトーニングー！</button>
+ <button class="hell-extra-back" onclick="showPage('hellDebatePage')">議論に戻る</button></div>
+</section>
+<section class="hell-extra" id="hellDebateAnswerPage" hidden>
+ <div class="hell-extra-inner"><div class="lightning-laugh">聖聖聖笑 ライトニング笑</div><div>訳：アサガオ</div>
+ <p style="font-size:clamp(17px,4vw,23px);line-height:2">「ゴールドバッハ予想から出直してこいよ笑」<br>と言っているわ。</p>
+ <button class="hell-extra-back" onclick="showPage('hellConclusionPage')">再検証する</button></div>
+</section>
+<section class="hell-extra" id="hellJiroPage" hidden>
+ <div class="hell-extra-inner"><div style="font-size:11px">幻の第十門 / 書類審査</div><h2>ヘル次郎</h2>
+ <img class="hell-jiro-img" src="hell_profiles/helljiro.webp" alt="森の中で交差する二本の丸太">
+ <div class="hell-jiro-info">PART：ドラム<br>HEIGHT：2M(通常時)<br>INSTRUMENT：折れないスティック<br>STATUS：現在書類審査は通過</div>
+ <button class="hell-extra-back" onclick="showPage('hellGatesPage')">九門へ戻る</button></div>
+</section>
 <section id="hellWorshipPage" hidden>
  <div class="hell-worship-inner">
   <div class="hell-worship-label">愛修羅 / WORSHIP</div><h2 class="hell-worship-title">崇拝</h2>
@@ -696,7 +771,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
  <button class="hell-return" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
 </section>
 <script>
-const pages=['home','philosophyPage','ifPage','memberPage','instrumentPage','musicPage','neoPage','hellWarningPage','hellGatesPage','hellProfilePage','hellWorshipPage','hellAbyssPage','yoiKindnessPage','hellPlaceholderPage','hellMusicWarningPage','hellMusicPage'];
+const pages=['home','philosophyPage','ifPage','memberPage','instrumentPage','musicPage','neoPage','hellWarningPage','hellGatesPage','hellProfilePage','hellWorshipPage','hellAbyssPage','yoiKindnessPage','hellPlaceholderPage','hellMusicWarningPage','hellMusicPage','hellGrowPage','hellTomatoPage','hellDebatePage','hellConclusionPage','hellDebateAnswerPage','hellJiroPage'];
 const memberData=[
 {name:'SAYO',jp:'小夜',role:'BASS',image:'SAYO.jpg.PNG',height:'178cm',part:'Bass（レフティ）',instrument:'月影',description:'増女をモチーフにした面をつけている。その理由は詳細不明。\n月影をこよなく愛す。'},
 {name:'YOI',jp:'宵',role:'VOCAL',image:'YOI.jpg.PNG',height:'155cm',part:'Vocal',instrument:'cry',description:'天狗をモチーフにした面を首から背中側にかけている。天狗にならないように戒め。\nシャウトは極限までしない。'},
@@ -776,6 +851,8 @@ function openHellGate(name){
  if(name==='地獄'){showPage('hellMusicWarningPage');return;}
  if(name==='崇拝'){showPage('hellWorshipPage');return;}
  if(name==='深淵'){showPage('hellAbyssPage');return;}
+ if(name==='栽培'){showPage('hellGrowPage');return;}
+ if(name==='議論'){showPage('hellDebatePage');return;}
  const descriptions={'月下':'アサガオのプロフィール','叫魂':'暁のプロフィール','聖剣':'騎騎と聖剣ライトニング','栽培':'アサガオファンの思想','崇拝':'暁ファンの思想','議論':'聖剣ライトニングについて','深淵':'ディスコグラフィー','地獄':'楽曲'};
  document.getElementById('hellPlaceholderTitle').textContent=name;
  document.getElementById('hellPlaceholderText').textContent=(descriptions[name]||'')+' — 準備中';
