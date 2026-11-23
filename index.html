@@ -454,6 +454,30 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .hell-profile-key{font-size:11px;letter-spacing:.1em;color:#a99e9e}
 .hell-profile-value{overflow-wrap:anywhere;white-space:pre-line}
 .hell-profile-back{display:block;margin:35px auto 0;min-height:50px;padding:14px 25px;background:transparent;color:white;border:1px solid #87787b;letter-spacing:.1em}
+
+/* 宵の笑顔：崇拝からの静かな転送先 */
+#yoiKindnessPage{min-height:100svh;background:#fffaf6;color:#5d514d;text-align:center;padding:30px 18px 70px;box-sizing:border-box;}
+#yoiKindnessPage .yoi-kindness-inner{max-width:590px;margin:0 auto;}
+#yoiKindnessPage img{display:block;width:100%;height:auto;object-fit:contain;border:0;margin:0 auto;}
+#yoiKindnessPage .yoi-kindness-words{padding:30px 10px 18px;font-size:clamp(15px,3.8vw,19px);line-height:2.35;letter-spacing:.035em;}
+#yoiKindnessPage .yoi-kindness-words p{margin:0 0 18px;}
+#yoiKindnessPage .yoi-kindness-return{margin-top:46px;background:none;border:0;color:#a69b95;font-size:12px;text-decoration:underline;cursor:pointer;}
+
+/* 愛修羅：崇拝の祭壇と深淵の記録 */
+#hellWorshipPage{min-height:100svh;background:radial-gradient(ellipse at 50% 10%,#431414,#12080b 70%);color:#f3dfd3;text-align:center;padding:32px 15px 90px;box-sizing:border-box}
+.hell-worship-inner{max-width:720px;margin:auto}.hell-worship-label{font-size:11px;letter-spacing:.22em;color:#c89b83;margin:10px 0 14px}
+.hell-worship-title{font-size:clamp(32px,8vw,54px);font-weight:400;letter-spacing:.15em;margin:0 0 22px}
+.hell-altar-img{width:100%;height:auto;display:block;object-fit:contain;max-width:620px;margin:0 auto 28px}
+.hell-prayers{max-width:590px;margin:30px auto 55px;text-align:left;border-top:1px solid #65423d}
+.hell-prayer{display:flex;gap:14px;padding:19px 7px;border-bottom:1px solid #50312f;align-items:flex-start}
+.hell-prayer-icon{flex:none;color:#c07a4b;font-size:20px}.hell-prayer-name{font-size:12px;color:#ce9a80;margin-bottom:7px}.hell-prayer-msg{line-height:1.9;font-size:clamp(14px,3.5vw,17px)}
+.hell-trial{margin:35px auto 55px;padding:38px 14px;border-top:1px solid #673a32;border-bottom:1px solid #673a32}
+.hell-trial h3{font-size:23px;font-weight:400;letter-spacing:.16em;margin:0 0 20px}.hell-trial p{line-height:2.3;margin:0}
+.hell-trial-button{display:block;min-height:58px;margin:30px auto 0;padding:15px 28px;background:#6b1b22;color:#fff2e9;border:1px solid #bd7368;font:inherit;font-size:17px;letter-spacing:.08em;cursor:pointer;max-width:350px;width:100%}
+.hell-worship-back,.hell-abyss-back{padding:13px 25px;background:transparent;color:inherit;border:1px solid #80615b;font:inherit;cursor:pointer}
+#hellAbyssPage{min-height:100svh;background:radial-gradient(ellipse at 50% 10%,#54241a,#100b09 70%);padding:38px 15px 90px;text-align:center;color:#dfc9a5;box-sizing:border-box}
+.hell-burnt-paper{position:relative;max-width:640px;margin:0 auto 35px;padding:clamp(42px,10vw,75px) clamp(24px,7vw,55px);background:radial-gradient(ellipse at 20% 10%,#51301c 0%,transparent 32%),radial-gradient(ellipse at 95% 90%,#25130e 0%,transparent 30%),linear-gradient(145deg,#9a7046,#c4a17a 40%,#b18b60 67%,#59341e);box-shadow:0 0 0 6px #21120c,0 0 30px 13px #090606,0 16px 65px #000;color:#29190f;clip-path:polygon(2% 1%,8% 2%,14% 0%,25% 2%,37% 0%,49% 2%,62% 0%,74% 2%,86% 0%,97% 2%,99% 10%,97% 20%,100% 31%,97% 42%,100% 53%,97% 65%,100% 78%,97% 89%,99% 97%,89% 99%,78% 97%,65% 100%,52% 97%,38% 100%,26% 97%,14% 99%,3% 97%,1% 88%,3% 76%,0% 63%,3% 50%,0% 39%,3% 26%,0% 14%)}
+.hell-burnt-paper h2{font-size:clamp(36px,9vw,60px);letter-spacing:.17em;font-weight:500;margin:12px 0}.hell-burnt-paper .abyss-label{font-size:12px;letter-spacing:.18em}.hell-burnt-paper .abyss-motto{margin:26px 0;line-height:2}.hell-burnt-paper .abyss-genre{font-weight:700;letter-spacing:.06em;margin:22px 0 32px}.hell-burnt-paper .abyss-date{margin:20px 0}.hell-burnt-paper .abyss-history{line-height:2.2;margin:16px 0}.hell-burnt-paper hr{border:0;border-top:1px solid #66472e;margin:25px 0}
 </style>
 </head>
 <body>
@@ -616,6 +640,38 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
   <button class="hell-profile-back" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
  </div>
 </section>
+
+<section id="hellWorshipPage" hidden>
+ <div class="hell-worship-inner">
+  <div class="hell-worship-label">愛修羅 / WORSHIP</div><h2 class="hell-worship-title">崇拝</h2>
+  <img class="hell-altar-img" src="hell_profiles/akatsuki_altar.webp" alt="蝋燭に囲まれた暁様の祭壇" decoding="async">
+  <div class="hell-worship-label">暁様への祈り</div>
+  <div class="hell-prayers">
+   <div class="hell-prayer"><span class="hell-prayer-icon">♨</span><div><div class="hell-prayer-name">叫徒101</div><div class="hell-prayer-msg">暁様 GOD morning。</div></div></div>
+   <div class="hell-prayer"><span class="hell-prayer-icon">♨</span><div><div class="hell-prayer-name">叫徒350</div><div class="hell-prayer-msg">なんだもう朝か。暁様の声で快眠できました。</div></div></div>
+   <div class="hell-prayer"><span class="hell-prayer-icon">♨</span><div><div class="hell-prayer-name">叫徒008</div><div class="hell-prayer-msg">暁様 今日もシャウッキン(出勤)してきます。</div></div></div>
+   <div class="hell-prayer"><span class="hell-prayer-icon">♨</span><div><div class="hell-prayer-name">叫徒666</div><div class="hell-prayer-msg">暁様のおかげで彼女ができました。</div></div></div>
+   <div class="hell-prayer"><span class="hell-prayer-icon">♨</span><div><div class="hell-prayer-name">叫徒404</div><div class="hell-prayer-msg">宝くじが当たりました。</div></div></div>
+   <div class="hell-prayer"><span class="hell-prayer-icon">♨</span><div><div class="hell-prayer-name">叫徒777</div><div class="hell-prayer-msg">……</div></div></div>
+  </div>
+  <div class="hell-trial"><h3>信仰の試練</h3><p>貴方の信仰が試されます。</p><p>このボタンを押せますか？</p><button class="hell-trial-button" onclick="showPage('yoiKindnessPage')">儚さを捨てる。</button></div>
+  <button class="hell-worship-back" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
+ </div>
+</section>
+<section id="hellAbyssPage" hidden>
+ <div class="hell-burnt-paper"><div class="abyss-label">愛修羅 / DISCOGRAPHY</div><h2>深淵</h2><div class="abyss-motto">首を振れば、わかるかもしれない。</div><hr><div class="abyss-genre">GENRE：Abyssbirth</div><div class="abyss-date">令和8年11月23日</div><p class="abyss-history">地獄の底から3人？が産声を上げる(設定)</p><p class="abyss-history">HELLBOUNDが共鳴した産声の為そのまま結成し愛修羅となる(設定)</p></div>
+ <button class="hell-abyss-back" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
+</section>
+<section id="yoiKindnessPage" hidden>
+ <div class="yoi-kindness-inner">
+  <img src="hell_profiles/yoi_smile.webp" alt="満面の笑顔を浮かべる宵" decoding="async">
+  <div class="yoi-kindness-words">
+   <p>貴方は自分の弱さから逃げています。</p>
+   <p>自分の弱さは1番の強さです。どうかご自愛くださいね。</p>
+  </div>
+  <button class="yoi-kindness-return" onclick="showPage('hellGatesPage')">戻る</button>
+ </div>
+</section>
 <section class="hell-placeholder" id="hellPlaceholderPage" hidden>
  <div class="hell-eyebrow">COMING SOON</div><h2 id="hellPlaceholderTitle"></h2><p id="hellPlaceholderText"></p>
  <button class="hell-return" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
@@ -637,7 +693,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
  <button class="hell-return" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
 </section>
 <script>
-const pages=['home','philosophyPage','ifPage','memberPage','instrumentPage','musicPage','neoPage','hellWarningPage','hellGatesPage','hellProfilePage','hellPlaceholderPage','hellMusicWarningPage','hellMusicPage'];
+const pages=['home','philosophyPage','ifPage','memberPage','instrumentPage','musicPage','neoPage','hellWarningPage','hellGatesPage','hellProfilePage','hellWorshipPage','hellAbyssPage','yoiKindnessPage','hellPlaceholderPage','hellMusicWarningPage','hellMusicPage'];
 const memberData=[
 {name:'SAYO',jp:'小夜',role:'BASS',image:'SAYO.jpg.PNG',height:'178cm',part:'Bass（レフティ）',instrument:'月影',description:'増女をモチーフにした面をつけている。その理由は詳細不明。\n月影をこよなく愛す。'},
 {name:'YOI',jp:'宵',role:'VOCAL',image:'YOI.jpg.PNG',height:'155cm',part:'Vocal',instrument:'cry',description:'天狗をモチーフにした面を首から背中側にかけている。天狗にならないように戒め。\nシャウトは極限までしない。'},
@@ -715,12 +771,15 @@ function openHellGate(name){
  if(hellProfiles[name]){openHellProfile(name);return;}
  if(name==='天国'){goHome();return;}
  if(name==='地獄'){showPage('hellMusicWarningPage');return;}
+ if(name==='崇拝'){showPage('hellWorshipPage');return;}
+ if(name==='深淵'){showPage('hellAbyssPage');return;}
  const descriptions={'月下':'アサガオのプロフィール','叫魂':'暁のプロフィール','聖剣':'騎騎と聖剣ライトニング','栽培':'アサガオファンの思想','崇拝':'暁ファンの思想','議論':'聖剣ライトニングについて','深淵':'ディスコグラフィー','地獄':'楽曲'};
  document.getElementById('hellPlaceholderTitle').textContent=name;
  document.getElementById('hellPlaceholderText').textContent=(descriptions[name]||'')+' — 準備中';
  showPage('hellPlaceholderPage');
 }
 function goHome(){showPage('home')}
+if(location.hash==='#yoi-kindness'){setTimeout(()=>showPage('yoiKindnessPage'),0);}
 const swipeArea=document.getElementById('swipeArea');let touchStartX=0,touchStartY=0;
 let swipeMultitouch=false;
  swipeArea.addEventListener('touchstart',event=>{if(event.touches.length!==1){swipeMultitouch=true;return}swipeMultitouch=false;const touch=event.changedTouches[0];touchStartX=touch.clientX;touchStartY=touch.clientY},{passive:true});
