@@ -424,6 +424,15 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .hell-gate .crescent{width:66px;height:35px;border-bottom:10px solid #b4d0f7;border-radius:0 0 55% 55%;transform:rotate(180deg)}
 .hell-gates .hell-return{margin-top:10px}
 @media(max-width:420px){.hell-grid{gap:7px}.hell-gate{min-height:150px}.hell-gate .hell-art{min-height:55px}}
+
+/* Nine illustrated gates: artwork remains uncropped in its source file. */
+.hell-grid{gap:clamp(7px,1.6vw,14px)}
+.hell-gate.gate-image{position:relative;display:block;min-height:0;aspect-ratio:3/4;padding:0;overflow:hidden;background:#100d12;border:1px solid #66545c;color:#fff;isolation:isolate}
+.hell-gate.gate-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:-2}
+.hell-gate.gate-image::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to bottom,rgba(0,0,0,.65),rgba(0,0,0,.22) 25%,transparent 53%);pointer-events:none}
+.hell-gate.gate-image strong{display:block;position:absolute;top:8%;left:0;right:0;text-align:center;font-size:clamp(18px,3.3vw,31px);letter-spacing:.13em;text-shadow:0 2px 9px #000,0 0 12px #000}
+.hell-gate.gate-image:hover,.hell-gate.gate-image:focus-visible{border-color:#e8b88a;filter:brightness(1.09)}
+@media(max-width:420px){.hell-gate.gate-image strong{font-size:clamp(16px,5vw,22px)}}
 </style>
 </head>
 <body>
@@ -559,15 +568,15 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
  <div class="hell-gates-inner">
   <div class="hell-eyebrow">NINE GATES OF HELL</div><h2>愛修羅</h2>
   <div class="hell-grid">
-   <button class="hell-gate moon" onclick="openHellGate('月下')"><strong>月下</strong><span class="hell-art"><svg width="78" height="45" viewBox="0 0 78 45" aria-hidden="true"><path d="M8 12 Q39 47 70 12 Q60 42 39 42 Q18 42 8 12Z" fill="currentColor"/></svg></span></button>
-   <button class="hell-gate cry" onclick="openHellGate('叫魂')"><strong>叫魂</strong><span class="hell-art">🐓</span></button>
-   <button class="hell-gate sword" onclick="openHellGate('聖剣')"><strong>聖剣</strong><span class="hell-art">🗡️</span></button>
-   <button class="hell-gate grow" onclick="openHellGate('栽培')"><strong>栽培</strong><span class="hell-art">🌱🌱🌱</span></button>
-   <button class="hell-gate worship" onclick="openHellGate('崇拝')"><strong>崇拝</strong><span class="hell-art">🙇🏻‍♂️</span></button>
-   <button class="hell-gate debate" onclick="openHellGate('議論')"><strong>議論</strong><span class="hell-art small">聖剣とは？</span></button>
-   <button class="hell-gate abyss" onclick="openHellGate('深淵')"><strong>深淵</strong><span class="hell-art">👁️</span></button>
-   <button class="hell-gate inferno" onclick="openHellGate('地獄')"><strong>地獄</strong><span class="hell-art">🚪</span></button>
-   <button class="hell-gate heaven" onclick="goHome()"><strong>天国</strong><span class="hell-art small">鳴らせば、<br>わかるかもしれない。</span></button>
+   <button class="hell-gate gate-image" onclick="openHellGate('月下')" aria-label="月下"><img src="hell_images/gekka.webp" alt="" loading="lazy" decoding="async"><strong>月下</strong></button>
+   <button class="hell-gate gate-image" onclick="openHellGate('叫魂')" aria-label="叫魂"><img src="hell_images/kyokon.webp" alt="" loading="lazy" decoding="async"><strong>叫魂</strong></button>
+   <button class="hell-gate gate-image" onclick="openHellGate('聖剣')" aria-label="聖剣"><img src="hell_images/seiken.webp" alt="" loading="lazy" decoding="async"><strong>聖剣</strong></button>
+   <button class="hell-gate gate-image" onclick="openHellGate('栽培')" aria-label="栽培"><img src="hell_images/saibai.webp" alt="" loading="lazy" decoding="async"><strong>栽培</strong></button>
+   <button class="hell-gate gate-image" onclick="openHellGate('崇拝')" aria-label="崇拝"><img src="hell_images/suhai.webp" alt="" loading="lazy" decoding="async"><strong>崇拝</strong></button>
+   <button class="hell-gate gate-image" onclick="openHellGate('議論')" aria-label="議論"><img src="hell_images/giron.webp" alt="" loading="lazy" decoding="async"><strong>議論</strong></button>
+   <button class="hell-gate gate-image" onclick="openHellGate('深淵')" aria-label="深淵"><img src="hell_images/shin_en.webp" alt="" loading="lazy" decoding="async"><strong>深淵</strong></button>
+   <button class="hell-gate gate-image" onclick="openHellGate('地獄')" aria-label="地獄"><img src="hell_images/jigoku.webp" alt="" loading="lazy" decoding="async"><strong>地獄</strong></button>
+   <button class="hell-gate gate-image" onclick="goHome()" aria-label="天国"><img src="hell_images/tengoku.webp" alt="" loading="lazy" decoding="async"><strong>天国</strong></button>
   </div>
   <button class="hell-return" onclick="goHome()">AISHURAへ戻る</button>
  </div>
