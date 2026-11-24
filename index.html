@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<meta name="aishura-build" content="20261124-hafuri-r2">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AISHURA | Official Website</title>
@@ -512,7 +513,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 .hell-jiro-info{margin:20px auto;max-width:540px;text-align:left;line-height:2.4}
 </style>
 <style>
-.hell-extra-gates{display:flex;justify-content:center;align-items:flex-start;gap:22px;margin:42px auto 0}.hell-extra-gates .hell-mini-gate{margin:0 auto 12px}.hell-hafuri-gate{width:55px;height:66px;aspect-ratio:auto!important}.hell-hafuri-gate strong{font-size:18px!important}.hell-exclusive{color:#e44b42;line-height:1.9;font-weight:bold;margin:20px auto}.hafuri-record{max-width:560px;margin:35px auto;border-top:1px solid #68413e;padding-top:24px}.hafuri-record img{display:block;width:100%;height:auto;margin:auto}.hafuri-record h3{font-size:28px;margin:20px 0 12px}.hafuri-record p{line-height:1.9}.hafuri-invocation{color:#e44b42;font-size:clamp(19px,5vw,36px);line-height:1.7;margin:0 0 40px}
+.hell-extra-gates{display:flex;justify-content:center;align-items:flex-start;gap:22px;margin:42px auto 0}.hell-extra-gates .hell-mini-gate{margin:0 auto 12px}.hell-hafuri-gate{display:block;position:relative;width:72px;height:86px;aspect-ratio:auto!important;margin:0 auto;overflow:hidden}.hell-hafuri-gate img{width:100%;height:100%;object-fit:cover}.hell-hafuri-gate strong{font-size:18px!important}.hell-exclusive{color:#e44b42;line-height:1.9;font-weight:bold;margin:20px auto}.hafuri-record{max-width:560px;margin:35px auto;border-top:1px solid #68413e;padding-top:24px}.hafuri-record img{display:block;width:100%;height:auto;margin:auto}.hafuri-record h3{font-size:28px;margin:20px 0 12px}.hafuri-record p{line-height:1.9}.hafuri-invocation{color:#e44b42;font-size:clamp(19px,5vw,36px);line-height:1.7;margin:0 0 40px}
 </style></head>
 <body>
 <main id="home">
@@ -665,7 +666,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
    <button class="hell-gate gate-image" onclick="goHome()" aria-label="天国"><img src="hell_images/tengoku.webp" alt="" loading="lazy" decoding="async"><strong>天国</strong></button>
   </div>
 <div class="hell-extra-gates"><div>  <button class="hell-mini-gate" onclick="showPage('hellJiroPage')" aria-label="幻の第十門 ヘル次郎"><img src="hell_profiles/helljiro.webp" alt="森の丸太" loading="lazy"></button>
-  <div class="hell-mini-caption">第十門？</div></div><div><button class="hell-gate gate-image hell-hafuri-gate" onclick="showPage('hellHafuriPage')" aria-label="祝"><img src="hell_images/hafuri.webp" alt="祝福の門" loading="lazy"><strong>祝</strong></button></div></div>
+  <div class="hell-mini-caption">第十門？</div></div><div><button class="hell-gate gate-image hell-hafuri-gate" type="button" onclick="showPage('hellHafuriPage')" aria-label="祝"><img src="hell_images/hafuri.webp?v=2" alt="祝福の門" loading="lazy"><strong>祝</strong></button></div></div>
  </div>
 </section>
 <section class="hell-profile" id="hellProfilePage" hidden>
