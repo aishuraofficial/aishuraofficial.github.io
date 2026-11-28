@@ -5,6 +5,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AISHURA | Official Website</title>
+<meta name="description" content="AISHURA公式サイト。宵（YOI）、小夜（SAYO）、奇々（KIKI）による3人組音楽グループ。流転楽（RUTENGAKU）。鳴らせば、わかるかもしれない。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "AISHURA",
+  "url": "https://aishuraofficial.github.io/",
+  "sameAs": ["https://www.youtube.com/@aishura_official"],
+  "description": "AISHURA公式サイト。宵（YOI）、小夜（SAYO）、奇々（KIKI）による3人組音楽グループ。流転楽（RUTENGAKU）。鳴らせば、わかるかもしれない。",
+  "genre": "流転楽（RUTENGAKU）",
+  "member": [
+    {
+      "@type": "Person",
+      "name": "宵",
+      "alternateName": "YOI"
+    },
+    {
+      "@type": "Person",
+      "name": "小夜",
+      "alternateName": "SAYO"
+    },
+    {
+      "@type": "Person",
+      "name": "奇々",
+      "alternateName": "KIKI"
+    }
+  ]
+}
+</script>
+
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;font-family:Arial,"Helvetica Neue",sans-serif}
@@ -674,7 +704,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 </section>
 
 <section class="page" id="neoMusicPage" hidden><header class="page-title"><h2>AISHURA...NEO</h2></header><p class="neo-opening">12月より開音。</p><nav class="navigation"><button class="navbtn topback" onclick="goHome()">TOP BACK</button><button class="navbtn oneback" onclick="showPage('neoPage')">ONE BACK</button></nav></section>
-<section class="hell-warning" id="hellWarningPage" hidden>
+<section class="hell-warning" id="hellWarningPage" hidden data-nosnippet>
  <div class="hell-warning-inner">
   <div class="hell-eyebrow">WARNING / ANOTHER WORLD</div>
   <h2>警告</h2>
@@ -685,7 +715,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
   </div>
  </div>
 </section>
-<section class="hell-gates" id="hellGatesPage" hidden>
+<section class="hell-gates" id="hellGatesPage" hidden data-nosnippet>
  <div class="hell-gates-inner">
   <div class="hell-eyebrow">NINE GATES OF HELL</div><h2>愛修羅</h2>
   <div class="hell-feature">
@@ -710,7 +740,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
   <div class="hell-mini-caption">第十門？</div></div><div><button class="hell-gate gate-image hell-hafuri-gate" type="button" onclick="showPage('hellHafuriPage')" aria-label="祝"><img src="hell_images/hafuri.webp?v=2" alt="祝福の門" loading="lazy"><strong>祝</strong></button></div><div><button class="hell-gate gate-image hell-hafuri-gate hell-heiwa-gate" type="button" onclick="showPage('hellHeiwaPage')" aria-label="平話"><img src="hell_images/heiwa.webp" alt="古びた本" loading="lazy"><strong>平話</strong></button></div></div>
  </div>
 </section>
-<section class="hell-profile" id="hellProfilePage" hidden>
+<section class="hell-profile" id="hellProfilePage" hidden data-nosnippet>
  <div class="hell-profile-inner">
   <div class="hell-eyebrow">HELL / MEMBER PROFILE</div>
   <h2 id="hellProfileName"></h2>
@@ -721,7 +751,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
 </section>
 
 
-<section class="hell-extra" id="hellGrowPage" hidden>
+<section class="hell-extra" id="hellGrowPage" hidden data-nosnippet>
  <div class="hell-extra-inner"><h2>栽培</h2>
  <div class="garden-chat"><div class="garden-header">🌱 ムーンリバース園芸部（128）<div style="font-size:12px;font-weight:normal">本日の水やり報告</div></div>
  <div class="garden-msg"><span class="garden-avatar">🌼</span><div><div class="garden-name">水やり三段</div><div class="garden-bubble">おはようございます🌱
@@ -732,8 +762,8 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
  </div><button class="garden-button" onclick="showPage('hellTomatoPage')">今日の育成状況</button>
  <div><button class="hell-extra-back" onclick="showPage('hellGatesPage')">九門へ戻る</button></div></div>
 </section>
-<section class="hell-extra" id="hellTomatoPage" hidden><div><p>プチトマトを収穫した。</p><button class="hell-extra-back" onclick="showPage('hellGrowPage')">戻る</button></div></section>
-<section class="hell-extra" id="hellDebatePage" hidden>
+<section class="hell-extra" id="hellTomatoPage" hidden data-nosnippet><div><p>プチトマトを収穫した。</p><button class="hell-extra-back" onclick="showPage('hellGrowPage')">戻る</button></div></section>
+<section class="hell-extra" id="hellDebatePage" hidden data-nosnippet>
  <div class="hell-extra-inner"><div style="font-size:12px;letter-spacing:.2em">聖剣ライトニング学術研究会</div><h2>聖剣ライトニングとは？</h2>
  <div class="research">
  <article><h3>第一章　聖剣の定義</h3>聖剣とは何か。誰が聖なるものと認定するのか。剣の所有者が自称した場合、その効力は認められるのか。</article>
@@ -744,7 +774,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
  </div><button class="research-button" onclick="showPage('hellConclusionPage')">結論を導く</button>
  <div><button class="hell-extra-back" onclick="showPage('hellGatesPage')">九門へ戻る</button></div></div>
 </section>
-<section class="hell-extra" id="hellConclusionPage" hidden>
+<section class="hell-extra" id="hellConclusionPage" hidden data-nosnippet>
  <div class="hell-extra-inner"><h2>結論</h2><h3>聖剣ライトニングとは？</h3>
  <button class="research-choice" onclick="showPage('hellDebateAnswerPage')">① 聖剣。ライトニング。</button>
  <button class="research-choice" onclick="showPage('hellDebateAnswerPage')">② 聖！剣！ライトニング！</button>
@@ -752,20 +782,20 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
  <button class="research-choice" onclick="showPage('hellDebateAnswerPage')">④ 聖剣ライトーニングー！</button>
  <button class="hell-extra-back" onclick="showPage('hellDebatePage')">議論に戻る</button></div>
 </section>
-<section class="hell-extra" id="hellDebateAnswerPage" hidden>
+<section class="hell-extra" id="hellDebateAnswerPage" hidden data-nosnippet>
  <div class="hell-extra-inner"><div class="lightning-laugh">聖聖聖笑 ライトニング笑</div><div>訳：アサガオ</div>
  <p style="font-size:clamp(17px,4vw,23px);line-height:2">「ゴールドバッハ予想から出直してこいよ笑」<br>と言っているわ。</p>
  <button class="hell-extra-back" onclick="showPage('hellConclusionPage')">再検証する</button></div>
 </section>
-<section class="hell-extra" id="hellJiroPage" hidden>
+<section class="hell-extra" id="hellJiroPage" hidden data-nosnippet>
  <div class="hell-extra-inner"><div style="font-size:11px">幻の第十門 / 書類審査</div><h2>ヘル次郎</h2>
  <img class="hell-jiro-img" src="hell_profiles/helljiro.webp" alt="森の中で交差する二本の丸太">
  <div class="hell-jiro-info">PART：ドラム<br>HEIGHT：2M(通常時)<br>INSTRUMENT：折れないスティック<br>STATUS：現在書類審査は通過</div>
  <button class="hell-extra-back" onclick="showPage('hellGatesPage')">九門へ戻る</button></div>
 </section>
-<section class="hell-extra" id="hellHafuriPage" hidden><div class="hell-extra-inner"><div class="hafuri-invocation">喰う...喰らう...喰い改めよ</div><h2>地獄の祝（はふり）</h2><p>調査中。</p><article class="hafuri-record"><img src="hell_profiles/hafuri_kuchi.webp" alt="祝口" loading="lazy"><h3>祝口</h3><p>暁のシャウトの邪魔をする。<br>詳しくは調査中。</p></article><article class="hafuri-record"><img src="hell_profiles/hafuri_ushi.webp" alt="祝牛" loading="lazy"><h3>祝牛</h3><p>アサガオの音程の邪魔をする。<br>詳しくは調査中。</p></article><article class="hafuri-record"><img src="hell_profiles/hafuri_tora.webp" alt="祝虎" loading="lazy"><h3>祝虎</h3><p>騎騎の音に歪みで邪魔をする。<br>詳しくは調査中。</p></article><button class="hell-extra-back" onclick="showPage('hellGatesPage')">九門へ戻る</button></div></section>
-<section class="hell-heiwa-page" id="hellHeiwaPage" hidden><div class="hell-heiwa-inner"><h2>平話</h2><figure class="hell-comic"><img src="hell_comics/01_niwatori.webp" alt="第1話 ニワトリ" width="1024" height="1536" loading="lazy" decoding="async"></figure><figure class="hell-comic"><img src="hell_comics/02_mizuyari.webp" alt="第2話 水やり" width="1024" height="1536" loading="lazy" decoding="async"></figure><figure class="hell-comic"><img src="hell_comics/03_lightning.webp" alt="第3話 聖剣ライトニング" width="1024" height="1536" loading="lazy" decoding="async"></figure><button class="hell-extra-back" onclick="showPage('hellGatesPage')">九門へ戻る</button></div></section>
-<section id="hellWorshipPage" hidden>
+<section class="hell-extra" id="hellHafuriPage" hidden data-nosnippet><div class="hell-extra-inner"><div class="hafuri-invocation">喰う...喰らう...喰い改めよ</div><h2>地獄の祝（はふり）</h2><p>調査中。</p><article class="hafuri-record"><img src="hell_profiles/hafuri_kuchi.webp" alt="祝口" loading="lazy"><h3>祝口</h3><p>暁のシャウトの邪魔をする。<br>詳しくは調査中。</p></article><article class="hafuri-record"><img src="hell_profiles/hafuri_ushi.webp" alt="祝牛" loading="lazy"><h3>祝牛</h3><p>アサガオの音程の邪魔をする。<br>詳しくは調査中。</p></article><article class="hafuri-record"><img src="hell_profiles/hafuri_tora.webp" alt="祝虎" loading="lazy"><h3>祝虎</h3><p>騎騎の音に歪みで邪魔をする。<br>詳しくは調査中。</p></article><button class="hell-extra-back" onclick="showPage('hellGatesPage')">九門へ戻る</button></div></section>
+<section class="hell-heiwa-page" id="hellHeiwaPage" hidden data-nosnippet><div class="hell-heiwa-inner"><h2>平話</h2><figure class="hell-comic"><img src="hell_comics/01_niwatori.webp" alt="第1話 ニワトリ" width="1024" height="1536" loading="lazy" decoding="async"></figure><figure class="hell-comic"><img src="hell_comics/02_mizuyari.webp" alt="第2話 水やり" width="1024" height="1536" loading="lazy" decoding="async"></figure><figure class="hell-comic"><img src="hell_comics/03_lightning.webp" alt="第3話 聖剣ライトニング" width="1024" height="1536" loading="lazy" decoding="async"></figure><button class="hell-extra-back" onclick="showPage('hellGatesPage')">九門へ戻る</button></div></section>
+<section id="hellWorshipPage" hidden data-nosnippet>
  <div class="hell-worship-inner">
   <div class="hell-worship-label">愛修羅 / WORSHIP</div><h2 class="hell-worship-title">崇拝</h2>
   <img class="hell-altar-img" src="hell_profiles/akatsuki_altar.webp" alt="蝋燭に囲まれた暁様の祭壇" decoding="async">
@@ -782,11 +812,11 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
   <button class="hell-worship-back" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
  </div>
 </section>
-<section id="hellAbyssPage" hidden>
+<section id="hellAbyssPage" hidden data-nosnippet>
  <div class="hell-burnt-paper"><div class="abyss-label">愛修羅 / DISCOGRAPHY</div><h2>深淵</h2><div class="abyss-motto">首を振れば、わかるかもしれない。</div><hr><div class="abyss-genre">GENRE：Abyssbirth</div><div class="abyss-date">令和8年11月23日</div><p class="abyss-history">地獄の底から3人？が産声を上げる(設定)</p><p class="abyss-history">HELLBOUNDが共鳴した産声の為そのまま結成し愛修羅となる(設定)</p></div>
  <button class="hell-abyss-back" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
 </section>
-<section id="yoiKindnessPage" hidden>
+<section id="yoiKindnessPage" hidden data-nosnippet>
  <div class="yoi-kindness-inner">
   <img src="hell_profiles/yoi_smile.webp" alt="満面の笑顔を浮かべる宵" decoding="async">
   <div class="yoi-kindness-words">
@@ -797,11 +827,11 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
   <button class="yoi-kindness-return" onclick="showPage('hellGatesPage')">戻る</button>
  </div>
 </section>
-<section class="hell-placeholder" id="hellPlaceholderPage" hidden>
+<section class="hell-placeholder" id="hellPlaceholderPage" hidden data-nosnippet>
  <div class="hell-eyebrow">COMING SOON</div><h2 id="hellPlaceholderTitle"></h2><p id="hellPlaceholderText"></p>
  <button class="hell-return" onclick="showPage('hellGatesPage')">九つの扉へ戻る</button>
 </section>
-<section class="hell-placeholder" id="hellMusicWarningPage" hidden>
+<section class="hell-placeholder" id="hellMusicWarningPage" hidden data-nosnippet>
  <div class="hell-warning-inner">
   <div class="hell-eyebrow">WARNING / MUSIC FROM HELL</div>
   <h2>警告</h2>
@@ -812,7 +842,7 @@ main{position:relative;display:flex;width:100%;min-height:100vh;min-height:100dv
   </div>
  </div>
 </section>
-<section class="hell-placeholder" id="hellMusicPage" hidden>
+<section class="hell-placeholder" id="hellMusicPage" hidden data-nosnippet>
  <div class="hell-eyebrow">MUSIC FROM HELL</div><h2>地獄</h2>
  <div style="max-width:760px;margin:28px auto;display:grid;gap:28px">
 <div class="hell-feature-video"><iframe src="https://www.youtube-nocookie.com/embed/jcfei28EZtw" title="愛修羅 - Official Audio 1" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
